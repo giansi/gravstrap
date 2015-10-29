@@ -1,0 +1,13 @@
+name: Gravstrap
+version: 0.0.1
+description: "Gravstrap is a Grav plugin that gives you the ability to use Bootstrap elements in the Grav way"
+icon: share-alt
+author:
+  name: Giansimon Diblas
+  email: info@diblas.net
+  url: http://diblas.net
+homepage: https://github.com/giansi/grav-plugin-gravstrap
+demo: none
+keywords: bootstrap, theme
+bugs: https://github.com/giansi/grav-plugin-gravstrap/issues
+license: MIT

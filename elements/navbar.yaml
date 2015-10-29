@@ -1,0 +1,80 @@
+gravstrap:
+    navbar:
+        # Add as many navbars as you need
+        navbar1:
+          id: bsnavbar
+          # none, top, bottom
+          fixed: none
+          # none, centered, fluid
+          centering: none          
+          # inverted: true
+          brand:
+              text: Brand
+              #image: brand.png
+          items:   
+              # Add as many menu or forms as you need
+              menu0:
+                  # menu, form
+                  type: menu
+                  # attributes:
+                  #    rel: foo
+                  items:
+                      item1:
+                          type: link
+                          href: "#"
+                          label: Page 1
+                          # attributes:
+                          #    class: something-cool
+                      item2:
+                          type: dropdown
+                          label: Page 2
+                          attributes:
+                              aria-haspopup: true
+                              aria-expanded: false
+                          items:                
+                              item0:
+                                  type: header
+                                  caption: Header text
+                              item1:
+                                  type: link
+                                  href: "#"
+                                  label: Subpage 1 
+                                  # attributes:
+                                  #    class: something-cool           
+                              item2:
+                                  type: link
+                                  href: "#"
+                                  disabled: true
+                                  label: Subpage 2            
+                              item3:
+                                  type: divider
+                              item4:
+                                  type: link
+                                  href: "#"
+                                  label: Subpage 3 
+              form1:
+                  type: form
+                  role: search 
+                  # alignment: left / right
+                  input:
+                      placeholder: Search
+                  submit:
+                      visible: true
+                      type: default
+                      label: Submit                  
+              menu1:
+                  type: menu
+                  alignment: right
+                  #attributes:
+                  #    rel: foo
+                  items:
+                      item1:
+                          type: link
+                          href: "#"
+                          label: Sign in
+                          icon: log-in
+                      item2:
+                          type: button
+                          label: Register
+                          icon: user
+                          button_type: default

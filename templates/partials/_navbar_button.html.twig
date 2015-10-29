@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-{{ item.button_type|default('default') }} navbar-btn">{% if item.icon is defined %}<span class="glyphicon glyphicon-{{ item.icon }}"></span> {% endif %} {{ item.label }}</button>

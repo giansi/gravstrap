@@ -1,0 +1,1 @@
+<a href="{{ item.href }}"{% include 'partials/_attributes.html.twig' with {'attributes': item.attributes} %}>{% if item.icon is defined %}<span class="glyphicon glyphicon-{{ item.icon }}"></span> {% endif %}{{ item.label }}</a>
