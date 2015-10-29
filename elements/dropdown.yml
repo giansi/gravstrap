@@ -3,6 +3,7 @@ gravstrap:
         # Add as many dropdowns as you need
         dropdown1:
             label: Cool
+            type: default
             # dropup: true
             items:             
                 item0:

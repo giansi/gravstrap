@@ -1,5 +1,5 @@
 <div class="{% if dropdown.dropup|default(false) %}dropup{% else %}dropdown{% endif %}">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <button class="btn btn-{{ dropdown.type|default('default') }} dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     {{ dropdown.label }}
     <span class="caret"></span>
   </button>
