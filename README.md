@@ -35,7 +35,34 @@ To use the elements in your template, you just call the `{{ gravstrap.carousel1 
 
 you just render it in your template as follows: `{{ gravstrap.carousel2 }}`.
 
-You can find the full declatarion for each available Bootstrap element into the `elements` folder, you can use to test it.
+## Sections
+
+Some `Bootstrap controls` can contain an HTML content, for example the `Jumbotron`, the `Thumbnails` or the `Tabs` controls. In this case it would be nice to add that content using Markdown. It is not possible to add a full markdown content in the header section, because some markdown characters are not allowed here.
+
+To solve this problem, you can add a markdown file which will contain one or more sections where you will define the content to render.
+
+This file is declared in the `header` section, using `from_file` keyword, as follows:
+
+    gravstrap:
+        tabs:
+            tab1:
+                from_file: tabs.markdown
+
+The `tabs.markdown` file obviously lives under the page where it is rendered and it is defined as follows:
+
+    [SECTION Gpm]
+
+    ### GPM Installation (_Preferred_)
+
+    The simplest way to install this theme is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (_also called the command line_).  From the root of your Grav install type:
+
+        bin/gpm install tessellate
+
+This will install this theme into your `/user/themes` directory within Grav. Its files can be found under `/your/site/grav/user/themes/tessellate`.
+
+    [/SECTION]
+
+You can find the full declaration for each available Bootstrap element into the `elements` folder, you can use to test it. The example files are placed under the elements/files folder.
 
 # Installation
 

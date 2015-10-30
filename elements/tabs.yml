@@ -1,0 +1,4 @@
+gravstrap:
+    tabs:
+        tab1:
+            from_file: tabs.markdown

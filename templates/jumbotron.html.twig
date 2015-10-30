@@ -1,0 +1,9 @@
+<div class="jumbotron">
+    {% if jumbotron.fullwidth == true %}
+    <div class="container">
+    {% endif %}
+    {{ jumbotron.sections|first }}    
+    {% if jumbotron.fullwidth == true %}
+    </div>
+    {% endif %}
+</div>

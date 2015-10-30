@@ -1,0 +1,5 @@
+gravstrap:
+    jumbotron:
+        jumbotron1:
+            fullwidth: true | false
+            from_file: jumbotron.markdown

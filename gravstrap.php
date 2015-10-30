@@ -72,10 +72,56 @@ class GravstrapPlugin extends Plugin
         foreach($gravstrapElements as $type => $elements) {
             $template = sprintf('%s.html.twig', $type);
             foreach($elements as $name => $element) {
+                if (array_key_exists('from_file', $element)) {
+                    $element["sections"] = $this->fetchSectionsFromFile($element['from_file']);
+                }
                 $gravstrap[$name] = $twig->twig->render($template, array($type => $element));
             }
         }
         
         $twig->twig_vars['gravstrap'] = $gravstrap;
+    }
+    
+    /**
+     * Parses the given file to fetch markdown sections.
+     * 
+     * A section is formatted as following:
+     * 
+     * [SECTION section-name]
+     * Markdown content
+     * [/SECTION]
+     * 
+     * @param type $fileName
+     * @return array
+     */
+    private function fetchSectionsFromFile($fileName)
+    {
+        $this->grav['twig']->twig_vars['sections'] = array();
+        $sectionsFile = $this->grav['page']->path() . '/' . $fileName;
+        if (!file_exists($sectionsFile)) {
+            return array();
+        }
+        
+        $sectionsContent = file_get_contents($sectionsFile);
+        $regex = '/\[SECTION\s([^\]]+)\](.*?)\[\/SECTION\]/si';
+        preg_match_all($regex, $sectionsContent, $matches, PREG_SET_ORDER);
+        if (!$matches) {
+            return array();
+        }
+        
+        $defaults = $this->config->get('system.pages');
+        if ($defaults['markdown_extra']) {
+            $parsedown = new \ParsedownExtra();
+        } else {
+            $parsedown = new \Parsedown();
+        }
+            
+        $sections = array();
+        foreach($matches as $match) {
+            $sectionName = $match[1];
+            $sections[$sectionName] = $parsedown->text($match[2]);
+        }
+        
+        return $sections;
     }
 }
