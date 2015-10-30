@@ -5,6 +5,10 @@ gravstrap:
             label: Cool
             type: default
             # dropup: true
+            attributes:
+                aria-haspopup: "true"
+                aria-expanded: "true"
+                # class: btn-lg
             items:             
                 item0:
                     type: header

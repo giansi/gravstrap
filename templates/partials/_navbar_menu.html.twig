@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav{% include 'partials/_navbar_item_alignment.html.twig' with {'item': menu} %}"{% include 'partials/_attributes.html.twig' with {'attributes': menu.attributes} %}>
+<ul class="nav navbar-nav  {{ menu.attributes['class'] }}{% include 'partials/_navbar_item_alignment.html.twig' with {'item': menu} %}"{% include 'partials/_attributes.html.twig' with {'attributes': menu.attributes, 'ignore': ['class']} %}>
     {% for item in menu.items %} 
     {#<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>#}
     {% if item.type == 'link' %}

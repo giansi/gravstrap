@@ -1,1 +1,2 @@
-{% for attribute, value in attributes %} {{ attribute }}="{{ value }}"{% endfor %}
+{% set ignore = ignore|default([]) %}
+{% for attribute, value in attributes %} {% if attribute in ignore == false %}{{ attribute }}="{{ value }}"{% endif %}{% endfor %}

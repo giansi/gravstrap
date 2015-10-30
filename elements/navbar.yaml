@@ -18,6 +18,7 @@ gravstrap:
                   type: menu
                   # attributes:
                   #    rel: foo
+                  #    class: something-cool
                   items:
                       item1:
                           type: link
@@ -29,8 +30,9 @@ gravstrap:
                           type: dropdown
                           label: Page 2
                           attributes:
-                              aria-haspopup: true
-                              aria-expanded: false
+                              aria-haspopup: "true"
+                              aria-expanded: "false"
+                              # class: something-cool
                           items:                
                               item0:
                                   type: header
@@ -65,8 +67,6 @@ gravstrap:
               menu1:
                   type: menu
                   alignment: right
-                  #attributes:
-                  #    rel: foo
                   items:
                       item1:
                           type: link
