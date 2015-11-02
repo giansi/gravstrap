@@ -1,0 +1,142 @@
+.navbar {
+  background-color: transparent;
+  border-bottom: 0;
+  padding: 0.5rem 8rem;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.navbar .navbar-brand {
+  color: #fff;
+  font-weight: bold;
+}
+.navbar .navbar-brand:hover {
+  color: #fff;
+}
+.navbar .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar .navbar-nav > li > a:hover {
+  color: #dde300;
+}
+.navbar .navbar-nav > .active > a {
+  color: #ffe727;
+}
+.navbar .navbar-nav > .active > a:hover {
+  color: #dde300;
+}
+.navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
+  background-color: transparent;
+}
+.navbar.scrolled {
+  background-color: #fff;
+  opacity: 0.9;
+  box-shadow: 0 0.05rem 1rem #333;
+}
+.navbar.scrolled .navbar-brand {
+  color: #525252;
+}
+.navbar.scrolled .navbar-brand:hover {
+  color: #fff;
+}
+.navbar.scrolled .navbar-nav > li > a {
+  color: #525252;
+}
+.navbar.scrolled .navbar-nav > li > a:hover {
+  color: #dde300;
+}
+.navbar.scrolled .navbar-nav > .active > a {
+  color: #ffe727;
+}
+.navbar.scrolled .navbar-nav > .active > a:hover {
+  color: #dde300;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+.navbar-nav > li > .dropdown-menu, .dropdown-menu {
+  display: block;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+  position: absolute;
+  opacity: 0;
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -moz-box-shadow: 1px, 2px, 3px, rgba(0, 0, 0, 0.125);
+  -webkit-box-shadow: 1px, 2px, 3px, rgba(0, 0, 0, 0.125);
+  box-shadow: 1px, 2px, 3px, rgba(0, 0, 0, 0.125);
+  -moz-border-radius: 0.8rem;
+  -webkit-border-radius: 0.8rem;
+  border-radius: 0.8rem;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-filter: alpha(opacity=0);
+  filter: alpha(opacity=0);
+  -moz-transition: all, 100ms, cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -o-transition: all, 100ms, cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -webkit-transition: all, 100ms, cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition: all, 100ms, cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -moz-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -o-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -webkit-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+.navbar-nav > li.open > .dropdown-menu, .open .dropdown-menu {
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-filter: none;
+  filter: none;
+  opacity: 1;
+}
+
+.dropdown-menu:before, .dropdown-menu:after {
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 100%;
+  margin-left: -80%;
+}
+
+.dropdown-menu:before {
+  border-bottom: 11px solid rgba(0, 0, 0, 0.2);
+  top: -11px;
+}
+
+.dropdown-menu:after {
+  border-bottom: 11px solid #FFFFFF;
+  top: -10px;
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+  color: #333333;
+}
+
+.dropdown-menu > li:first-child > a {
+  border-radius: 10px 10px 0 0;
+}
+
+.dropdown-menu > li:last-child > a {
+  border-bottom: 0 none;
+  border-radius: 0 0 10px 10px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: #F5F5F5;
+  color: #333333;
+  opacity: 1;
+  text-decoration: none;
+}

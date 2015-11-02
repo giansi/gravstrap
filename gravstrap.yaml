@@ -3,9 +3,9 @@ navbar:
     enhanced: false
     assets:
         css:
-            0: gravstrap_header.css
+            0: gravstrap_navbar.css
         js:
-            0: gravstrap_header.js
+            0: gravstrap_navbar.js
 jumbotron:
     enhanced: false
     assets:
