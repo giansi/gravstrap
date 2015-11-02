@@ -1,0 +1,18 @@
+.jumbotron {
+  background-size: cover;
+  height: 45em;
+  padding: 15em;
+  text-align: center;
+}
+.jumbotron h1 {
+  color: #fff;
+}
+.jumbotron h2 {
+  color: #fff;
+}
+.jumbotron h3 {
+  color: #fff;
+}
+.jumbotron strong {
+  color: #fff;
+}

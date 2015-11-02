@@ -1,4 +1,5 @@
-<div class="jumbotron">
+{% set image = (jumbotron.image is defined) ? ' style="background-image: url(\'' ~ grav['page'].media.images[jumbotron.image].url ~ '\')"' : '' %}
+<div class="jumbotron"{{ image }}>
     {% if jumbotron.fullwidth == true %}
     <div class="container">
     {% endif %}

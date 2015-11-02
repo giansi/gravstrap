@@ -1,8 +1,13 @@
 enabled: true
-sidebar:
-    _simple_search: true
-    _related_posts: true
-    _random: true
-    _taxonomy_list: true
-    _archives: true
-    _feed: true
+navbar:
+    enhanced: false
+    assets:
+        css:
+            0: gravstrap_header.css
+        js:
+            0: gravstrap_header.js
+jumbotron:
+    enhanced: false
+    assets:
+        css:
+            0: gravstrap_jumbotron.css

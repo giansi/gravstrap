@@ -2,4 +2,5 @@ gravstrap:
     jumbotron:
         jumbotron1:
             fullwidth: true | false
-            from_file: jumbotron.markdown
+            from_file: jumbotron.markdown            
+            image: image1.jpg

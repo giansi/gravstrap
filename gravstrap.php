@@ -55,7 +55,7 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigSiteVariables()
     {
-        $this->grav['assets']->add('plugin://gravstrap/css/dbtheme.css');
+        $config = $this->grav["config"]->get('plugins.gravstrap');
         
         $twig = $this->grav['twig'];
         $gravstrapElements = array();
@@ -70,6 +70,9 @@ class GravstrapPlugin extends Plugin
         
         $gravstrap = array();
         foreach($gravstrapElements as $type => $elements) {
+            
+            $this->configureElement($type, $config);
+            
             $template = sprintf('%s.html.twig', $type);
             foreach($elements as $name => $element) {
                 if (array_key_exists('from_file', $element)) {
@@ -82,6 +85,24 @@ class GravstrapPlugin extends Plugin
         $twig->twig_vars['gravstrap'] = $gravstrap;
     }
     
+    private function configureElement($type, $config)
+    {
+        if ( ! array_key_exists($type, $config)) {
+            return;
+        }
+            
+        $className = ucfirst($type);
+        $classFile = __DIR__ . sprintf('/classes/%s.php', $className);
+        if (!file_exists($classFile)) {
+            return;
+        }
+        
+        require_once $classFile;
+        $className = 'Grav\\Plugin\\' . $className;
+        $element = new $className($this->grav);
+        $element->process($config[$type]);
+    }
+
     /**
      * Parses the given file to fetch markdown sections.
      * 
@@ -101,7 +122,7 @@ class GravstrapPlugin extends Plugin
         if (!file_exists($sectionsFile)) {
             return array();
         }
-        
+        //plugin://css/gravstrap_header.css
         $sectionsContent = file_get_contents($sectionsFile);
         $regex = '/\[SECTION\s([^\]]+)\](.*?)\[\/SECTION\]/si';
         preg_match_all($regex, $sectionsContent, $matches, PREG_SET_ORDER);
