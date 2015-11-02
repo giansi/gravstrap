@@ -64,6 +64,15 @@ This will install this theme into your `/user/themes` directory within Grav. Its
 
 You can find the full declaration for each available Bootstrap element into the `elements` folder, you can use to test it. The example files are placed under the elements/files folder.
 
+## Enhancements
+Some components have been enhanced while these setting are disabled by default to keep components as provided by Bootstrap. To enable this feature, simply copy the `gravstrap.yaml` plugin configuration under the `user/config/plugins` folder and enable the desidered enhancement:
+
+    navbar:
+        enhanced: true
+        [...]
+
+This will add process the extra toolbar enhancement configuration and add it to your theme.
+
 # Installation
 
 Installing the Gravstrap plugin can be done only manually at the moment, because the project is just started and it is not yet available through the GPM system. 
