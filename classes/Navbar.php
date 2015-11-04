@@ -35,7 +35,7 @@ class Navbar extends BaseComponent
     {
         $pages = $this->grav['pages']->root()->children();
         foreach($pages as $page) {
-            if ( ! $page->visible()) {
+            if ( ! $page->visible() || ! $page->published()) {
                 continue;
             }
             
@@ -106,7 +106,7 @@ class Navbar extends BaseComponent
         $dropdownItems = array();
         $children = $page->children();
         foreach ($children as $child) {
-            if ( ! $child->visible()) {
+            if ( ! $child->published()) {
                 continue;
             }
             
