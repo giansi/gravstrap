@@ -29,11 +29,25 @@ require_once(__DIR__ . '/ComponentInterface.php');
 abstract class BaseComponent implements ComponentInterface
 {        
     /**
+     * Grav instance
+     * 
+     * @var Grav 
+     */
+    
+    protected $grav;
+    /**
      * Component configuration
      * 
      * @var array
      */
     protected $config;
+    
+    /**
+     * The processed components
+     * 
+     * @var array 
+     */
+    protected $components;
     
     /**
      * Constructor
@@ -48,14 +62,33 @@ abstract class BaseComponent implements ComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function process(array $config)
+    public function process(array $config, array $components)
     {
         $this->config = $config;
+        $this->processComponents($components);
         if ( ! $this->config["enhanced"]) {
             return;
         }
         
         $this->addAssets();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function processedComponents()
+    {
+        return $this->components;
+    }
+    
+    /**
+     * Processes the component items
+     * 
+     * @return array
+     */
+    protected function processComponents(array $components)
+    {
+        $this->components = $components;
     }
 
     private function addAssets()

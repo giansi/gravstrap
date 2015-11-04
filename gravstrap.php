@@ -58,23 +58,23 @@ class GravstrapPlugin extends Plugin
         $config = $this->grav["config"]->get('plugins.gravstrap');
         
         $twig = $this->grav['twig'];
-        $gravstrapElements = array();
+        $gravstrapComponents = array();
         $header = $this->grav["page"]->header();
         if (property_exists($header, "gravstrap")) {
-            $gravstrapElements = $header->gravstrap;
+            $gravstrapComponents = $header->gravstrap;
         }
         
         if (array_key_exists("gravstrap", $twig->twig_vars['site'])) {
-            $gravstrapElements = array_merge($twig->twig_vars['site']['gravstrap'], $gravstrapElements);
-        }
+            $gravstrapComponents = array_merge_recursive($twig->twig_vars['site']['gravstrap'], $gravstrapComponents);
+        }//print_r($gravstrapComponents);exit;
         
         $gravstrap = array();
-        foreach($gravstrapElements as $type => $elements) {
+        foreach($gravstrapComponents as $type => $components) {
             
-            $this->configureElement($type, $config);
+            $components = $this->configureElement($type, $config, $components);
             
             $template = sprintf('%s.html.twig', $type);
-            foreach($elements as $name => $element) {
+            foreach($components as $name => $element) {
                 if (array_key_exists('from_file', $element)) {
                     $element["sections"] = $this->fetchSectionsFromFile($element['from_file']);
                 }
@@ -85,12 +85,12 @@ class GravstrapPlugin extends Plugin
         $twig->twig_vars['gravstrap'] = $gravstrap;
     }
     
-    private function configureElement($type, $config)
+    private function configureElement($type, $config, $components)
     {
         if ( ! array_key_exists($type, $config)) {
             return;
         }
-            
+        
         $className = ucfirst($type);
         $classFile = __DIR__ . sprintf('/classes/%s.php', $className);
         if (!file_exists($classFile)) {
@@ -100,7 +100,9 @@ class GravstrapPlugin extends Plugin
         require_once $classFile;
         $className = 'Grav\\Plugin\\' . $className;
         $element = new $className($this->grav);
-        $element->process($config[$type]);
+        $element->process($config[$type], $components);
+        
+        return $element->processedComponents();
     }
 
     /**

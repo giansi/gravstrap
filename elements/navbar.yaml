@@ -1,3 +1,4 @@
+# The navbar component is usually the same for the whole site. If this is your case, add the navbar configuration to the config/site.yaml file
 gravstrap:
     navbar:
         # Add as many navbars as you need
@@ -19,41 +20,6 @@ gravstrap:
                   # attributes:
                   #    rel: foo
                   #    class: something-cool
-                  items:
-                      item1:
-                          type: link
-                          href: "#"
-                          label: Page 1
-                          # attributes:
-                          #    class: something-cool
-                      item2:
-                          type: dropdown
-                          label: Page 2
-                          attributes:
-                              aria-haspopup: "true"
-                              aria-expanded: "false"
-                              # class: something-cool
-                          items:                
-                              item0:
-                                  type: header
-                                  caption: Header text
-                              item1:
-                                  type: link
-                                  href: "#"
-                                  label: Subpage 1 
-                                  # attributes:
-                                  #    class: something-cool           
-                              item2:
-                                  type: link
-                                  href: "#"
-                                  disabled: true
-                                  label: Subpage 2            
-                              item3:
-                                  type: divider
-                              item4:
-                                  type: link
-                                  href: "#"
-                                  label: Subpage 3 
               form1:
                   type: form
                   role: search 
@@ -67,14 +33,21 @@ gravstrap:
               menu1:
                   type: menu
                   alignment: right
-                  items:
-                      item1:
-                          type: link
-                          href: "#"
-                          label: Sign in
-                          icon: log-in
-                      item2:
-                          type: button
-                          label: Register
-                          icon: user
-                          button_type: default
+                  
+# Page configuration
+# When any configuration is defined, the page is rendered in the first menu of the first toolbar, as a link
+navbar_configuration:
+    # The navbar where the page is placed.
+    navbar: navbar1     
+    # The menu where the page is placed.
+    menu_item: menu1
+    # Renders the page as a dropdown and uses the children as dropdowns items
+    submenu: true
+    # Displays the specified icon
+    icon: camera-retro
+    # Changes the icon format. Accepted values are glyphicon, the default icon set, and fontawesome.
+    icon_type: fontawesome
+    # Rendes the link as a button
+    type: button
+    # Chosse the button type
+    button_type: primary

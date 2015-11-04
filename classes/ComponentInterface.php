@@ -28,7 +28,14 @@ interface ComponentInterface
      * Processes the component from the given configuration
      * 
      * @param array $config
-     * @return type
+     * @param array $components
      */
-    public function process(array $config);
+    public function process(array $config, array $components);
+    
+    /**
+     * Returns the processed components
+     * 
+     * @return array
+     */
+    public function processedComponents();
 }
