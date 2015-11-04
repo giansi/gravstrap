@@ -66,13 +66,11 @@ class GravstrapPlugin extends Plugin
         
         if (array_key_exists("gravstrap", $twig->twig_vars['site'])) {
             $gravstrapComponents = array_merge_recursive($twig->twig_vars['site']['gravstrap'], $gravstrapComponents);
-        }//print_r($gravstrapComponents);exit;
+        }
         
         $gravstrap = array();
         foreach($gravstrapComponents as $type => $components) {
-            
-            $components = $this->configureElement($type, $config, $components);
-            
+            $components = $this->configureElement($type, $config, $components);            
             $template = sprintf('%s.html.twig', $type);
             foreach($components as $name => $element) {
                 if (array_key_exists('from_file', $element)) {
@@ -124,7 +122,7 @@ class GravstrapPlugin extends Plugin
         if (!file_exists($sectionsFile)) {
             return array();
         }
-        //plugin://css/gravstrap_header.css
+        
         $sectionsContent = file_get_contents($sectionsFile);
         $regex = '/\[SECTION\s([^\]]+)\](.*?)\[\/SECTION\]/si';
         preg_match_all($regex, $sectionsContent, $matches, PREG_SET_ORDER);

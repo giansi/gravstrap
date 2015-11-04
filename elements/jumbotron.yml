@@ -1,6 +1,17 @@
 gravstrap:
     jumbotron:
         jumbotron1:
-            fullwidth: true | false
-            from_file: jumbotron.markdown            
-            image: image1.jpg
+            fullwidth: true
+            image: 
+                name: image.jpg
+                brightness: -30
+                contrast: -5
+                # Add 0 as value for properties that does not require an argument
+                grayscale: 0 
+                colorize: 
+                    0: 0
+                    1: 123
+                    2: -223
+                # Add all the media methods you need
+                [...]
+            from_file: jumbotron.markdown
