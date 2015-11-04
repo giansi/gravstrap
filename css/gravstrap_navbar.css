@@ -110,6 +110,10 @@
   margin-left: -80%;
 }
 
+.navbar-right .dropdown-menu:before, .navbar-right .dropdown-menu:after {
+  margin-left: -40%;
+}
+
 .dropdown-menu:before {
   border-bottom: 11px solid rgba(0, 0, 0, 0.2);
   top: -11px;
