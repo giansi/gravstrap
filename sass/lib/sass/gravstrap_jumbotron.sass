@@ -1,7 +1,7 @@
 .jumbotron
     background-size: cover
-    height: 65rem
-    padding: 20rem 15rem
+    background-position: center
+    
     text-align: center
 
     h1
@@ -15,3 +15,11 @@
 
     strong
         color: #fff
+
+    @media screen and (min-width: 768px)
+        padding: 20rem 15rem
+        height: 65rem
+
+    @media screen and (max-width: 767px)
+        padding: 7rem 0.5rem 
+        min-height: 40rem

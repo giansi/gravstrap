@@ -68,13 +68,14 @@ class GravstrapPlugin extends Plugin
             $gravstrapComponents = array_merge_recursive($twig->twig_vars['site']['gravstrap'], $gravstrapComponents);
         }
         
+        $sections = $twig->twig_vars['sections'];
         $gravstrap = array();
         foreach($gravstrapComponents as $type => $components) {
             $components = $this->configureElement($type, $config, $components);            
             $template = sprintf('%s.html.twig', $type);
             foreach($components as $name => $element) {
                 if (array_key_exists('from_file', $element)) {
-                    $element["sections"] = $this->fetchSectionsFromFile($element['from_file']);
+                    $element["sections"] = $sections["page"][$element['from_file']];
                 }
                 $gravstrap[$name] = $twig->twig->render($template, array($type => $element));
             }
@@ -86,13 +87,13 @@ class GravstrapPlugin extends Plugin
     private function configureElement($type, $config, $components)
     {
         if ( ! array_key_exists($type, $config)) {
-            return;
+            return $components;
         }
         
         $className = ucfirst($type);
         $classFile = __DIR__ . sprintf('/classes/%s.php', $className);
         if (!file_exists($classFile)) {
-            return;
+            return $components;
         }
         
         require_once $classFile;
@@ -117,7 +118,6 @@ class GravstrapPlugin extends Plugin
      */
     private function fetchSectionsFromFile($fileName)
     {
-        $this->grav['twig']->twig_vars['sections'] = array();
         $sectionsFile = $this->grav['page']->path() . '/' . $fileName;
         if (!file_exists($sectionsFile)) {
             return array();

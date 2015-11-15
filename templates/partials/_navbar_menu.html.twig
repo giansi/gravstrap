@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav  {{ menu.attributes['class'] }}{% include 'partials/_navbar_item_alignment.html.twig' with {'item': menu} %}"{% include 'partials/_attributes.html.twig' with {'attributes': menu.attributes, 'ignore': ['class']} %}>
+<ul class="nav navbar-nav {{ menu.attributes['class'] }} {% include 'partials/_navbar_item_alignment.html.twig' with {'item': menu} %}"{% include 'partials/_attributes.html.twig' with {'attributes': menu.attributes, 'ignore': ['class']} %}>
     
     {% for item in menu.items %}
     {% if item.type == 'link' %}
@@ -10,28 +10,4 @@
     <li>{% include 'partials/_navbar_button.html.twig' with {'item': item } %}</li>
     {% endif %}
     {% endfor %}
-    {#{% for item in grav["pages"].root.children.visible %}
-    <li{{ active }}>{% include 'partials/_link.html.twig' %}</li>
-    {% endfor %}#
-    
-    {% for menu_name, item in menu.items %}
-    <li{{ active }}>{% include 'partials/_link.html.twig' %}</li>
-    {% endfor %}
-    {#
-    {% if menu.items is defined %}
-    {% for item in menu.items %}
-    {% if item.type == 'link' %}
-    {% set active = (grav["page"].url == item.href or grav["page"].url == '/' ~ item.href) ? ' class="active"' : '' %}
-    <li{{ active }}>{% include 'partials/_link.html.twig' with {'attributes': item.attributes }%}</li>
-    {% elseif item.type == 'dropdown' %}
-    {% include 'partials/_navbar_dropdown.html.twig' with {'dropdown': item } %}
-    {% elseif item.type == 'button' %}
-    <li>{% include 'partials/_navbar_button.html.twig' with {'item': item } %}</li>
-    {% endif %}
-    {% endfor %}
-    {% else %}
-    {% for item in grav["pages"].root.children.visible %}
-    <li{{ active }}>{% include 'partials/_link.html.twig' %}</li>
-    {% endfor %}
-    {% endif %}#}
 </ul>

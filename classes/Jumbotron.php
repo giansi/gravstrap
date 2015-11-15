@@ -40,7 +40,12 @@ class Jumbotron extends BaseComponent
             $imageName = $imageProperties["name"];
             unset($imageProperties["name"]);
             
-            $image = $this->grav['page']->media()->images()[$imageName];
+            $images = $this->grav['page']->media()->images();
+            if (!array_key_exists($imageName, $images)) {
+                throw new \InvalidArgumentException(sprintf("The image %s has not been found in the current page. Please check the gravstrap header configuration for the %s page.", $imageName, $this->grav['page']->path()));
+            }
+            
+            $image = $images[$imageName];
             foreach($imageProperties as $property => $value) {
                 if (!is_array($value)) {
                     $value = array($value);
