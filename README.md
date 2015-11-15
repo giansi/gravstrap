@@ -78,8 +78,11 @@ This will add process the extra toolbar enhancement configuration and add it to 
 Installing the Gravstrap plugin can be done only manually at the moment, because the project is just started and it is not yet available through the GPM system. 
 
 ## Manual Installation
+`Gravstrap` requires the `Markdown Sections` plugin to work.
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `gravstrap`. You can find these files either on [GitHub](https://github.com/giansi/grav-plugin-gravstrap).
+To install `Gravstrap` plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. then, rename the folder to `gravstrap`. 
+
+To install `Markdown Sections` plugin, just download the zip version of [this repository](https://github.com/giansi/grav-plugin-markdown-sections/releases) unzip it under `/your/site/grav/user/plugins`. When you are done, rename the folder to `markdownsections`. 
 
 ## Contributing
 
