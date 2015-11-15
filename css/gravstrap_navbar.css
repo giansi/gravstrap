@@ -37,13 +37,13 @@
   color: #fff;
 }
 .navbar .navbar-nav > li > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar .navbar-nav > .active > a {
   color: #ffe727;
 }
 .navbar .navbar-nav > .active > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -171,13 +171,13 @@
   color: #525252;
 }
 .navbar.scrolled .navbar-nav > li > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar.scrolled .navbar-nav > .active > a {
   color: #ffe727;
 }
 .navbar.scrolled .navbar-nav > .active > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -303,13 +303,13 @@
   color: #fff;
 }
 .navbar .navbar-nav > li > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar .navbar-nav > .active > a {
   color: #ffe727;
 }
 .navbar .navbar-nav > .active > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -437,13 +437,13 @@
   color: #525252;
 }
 .navbar.scrolled .navbar-nav > li > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar.scrolled .navbar-nav > .active > a {
   color: #ffe727;
 }
 .navbar.scrolled .navbar-nav > .active > a:hover {
-  color: #dde300;
+  color: #ffac27;
 }
 .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
   background-color: transparent;
