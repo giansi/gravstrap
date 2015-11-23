@@ -1,0 +1,6 @@
+gravstrap:
+    well:
+        well1:            
+            text: Look, I'm in a well!
+            small: false
+            large: false
