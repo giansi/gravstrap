@@ -7,6 +7,7 @@ gravstrap:
                     link: "#"
                     active: true
                     badge: 12
+                    #type : success / info / warning / danger
                     #section: listgroup1
                 1:
                     link: "#"

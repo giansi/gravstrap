@@ -1,11 +1,6 @@
 gravstrap:
-    progressbar:        
+    pageheader:        
         # Add as many pageheader as you need
-        progressbar1:
-            min: 0
-            max: 100
-            value: 60
-            show_label: true
-            type: primary | success / info / warning / danger
-            striped: true
-            animated: true
+        pageheader1:
+            title: Example page header
+            subtitle: Subtext for header
