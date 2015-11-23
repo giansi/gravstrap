@@ -1,0 +1,15 @@
+gravstrap:
+    listgroup:
+        listgroup1:
+            #from_file: listgroup.markdown
+            items:
+                0:
+                    link: "#"
+                    active: true
+                    badge: 12
+                    #section: listgroup1
+                1:
+                    link: "#"
+                    #active: true
+                    #disabled: true
+                    #section: listgroup2

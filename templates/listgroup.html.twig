@@ -1,0 +1,19 @@
+<div class="list-group">
+    {% for item in listgroup.items %}
+        <a href="#" class="list-group-item{% if item.active %} active{% endif %}{% if item.disabled %} disabled{% endif %}">
+            {% if(item.badge is defined) %}
+            <span class="badge">14</span>
+            {% endif %}
+            {{ listgroup.sections[item.section] }}
+        </a>
+    {% endfor %}
+    {#
+  <a href="#" class="list-group-item active">
+      <span class="badge">14</span>
+      Cras justo odio
+  </a>
+  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item">Morbi leo risus</a>
+  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item">Vestibulum at eros</a>#}
+</div>
