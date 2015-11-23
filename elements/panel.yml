@@ -1,0 +1,9 @@
+gravstrap:
+    panel:
+        panel1:            
+            # the option from_file here does not define the full panel, but adds some additional markups
+            # from_file: panel.markdown
+            title: Panel title
+            # body option wins on the body section when it is defined
+            body: Panel content
+            #type: default | primary / success / info / warning / danger
