@@ -1,0 +1,21 @@
+gravstrap:
+    accordion:
+        accordion1:
+            from_file: accordion.markdown 
+            id: accordion 
+            items:
+                0:
+                    headingId: headingOne
+                    bodyId: collapseOne
+                    title: Collapsible Group Item #1
+                    section: collapse1
+                1:
+                    headingId: headingTwo
+                    bodyId: collapseTwo
+                    title: Collapsible Group Item #2
+                    section: collapse2
+                2:
+                    headingId: headingThree
+                    bodyId: collapseThree
+                    title: Collapsible Group Item #3
+                    section: collapse3

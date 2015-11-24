@@ -1,0 +1,18 @@
+<div class="panel-group" id="{{ accordion.id }}" role="tablist" aria-multiselectable="true">
+  {% for item in accordion.items %}
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="{{ item.headingId }}">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#{{ accordion.id }}" href="#{{ item.bodyId }}" aria-expanded="true" aria-controls="{{ item.bodyId }}">
+          {{ item.title }}
+        </a>
+      </h4>
+    </div>
+    <div id="{{ item.bodyId }}" class="panel-collapse collapse{% if loop.first %} in{% endif %}" role="tabpanel" aria-labelledby="{{ headingId }}">
+      <div class="panel-body">
+        {{ accordion.sections[item.section] }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
