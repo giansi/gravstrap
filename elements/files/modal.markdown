@@ -1,4 +1,4 @@
-# Section is optional, but body name is mandatory.
+# Section body is optional, but when you define it, you must call it body
 
 [SECTION body]
 

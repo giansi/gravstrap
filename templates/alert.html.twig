@@ -1,0 +1,7 @@
+<div class="alert alert-{{ alert.type|default('danger') }} {{ alert.attributes['class'] }}" role="alert"{% include 'partials/_attributes.html.twig' with {'attributes': alert.attributes, 'ignore': ['class']} %}>
+    {% if alert.body is defined %}
+        {{ alert.body }}
+    {% else %}
+        {{ alert.sections.body }}
+    {% endif %}
+</div>

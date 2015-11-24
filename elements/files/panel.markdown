@@ -1,4 +1,4 @@
-# All these sections are optional, but section names are mandatory. For table and listgroup sections you must add an html content because of required classes
+# All these sections are optional, but their names are mandatory when you define them. For table and listgroup sections you must add an html content because of required classes
 
 [SECTION body]
 
