@@ -3,7 +3,7 @@
     {% if jumbotron.fullwidth == true %}
     <div class="container">
     {% endif %}
-    {{ jumbotron.sections|first }}    
+    {{ jumbotron.sections[jumbotron.section] }}    
     {% if jumbotron.fullwidth == true %}
     </div>
     {% endif %}

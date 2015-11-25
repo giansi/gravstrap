@@ -13,5 +13,5 @@ gravstrap:
                     1: 123
                     2: -223
                 # Add all the media methods you need
-                [...]
             from_file: jumbotron.markdown
+            section: content

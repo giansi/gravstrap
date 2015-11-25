@@ -1,7 +1,7 @@
 gravstrap:
     collapse:
         collapse1:
-            #from_file: well.markdown 
+            #from_file: collapse.markdown 
             id: collapseExample 
             tag: a | button
             button_caption: Read me

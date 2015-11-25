@@ -1,4 +1,4 @@
-[SECTION Content]
+[SECTION content]
 
 # Hello, world!
 
