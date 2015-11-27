@@ -4,6 +4,7 @@ gravstrap:
             id: myModal
             title: Modal title
             #from_file: modal.markdown
+            body: A simple modal text
             buttons:
                 0:
                     type: primary

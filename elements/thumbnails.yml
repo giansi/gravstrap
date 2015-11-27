@@ -3,17 +3,17 @@ gravstrap:
         thumbnails1:
             #from_file: thumbnails.markdown
             0:
-                link: "#"
+                url: "#"
                 class: col-xs-6 col-md-3
                 image: image1.jpg
                 #section: thumbnail1
             1:
-                link: "#"
+                url: "#"
                 class: col-xs-6 col-md-3
                 image: image1.jpg
                 #section: thumbnail2
             2:
-                link: "#"
+                url: "#"
                 class: col-xs-6 col-md-3
                 image: image1.jpg
                 #section: thumbnail3

@@ -1,12 +1,12 @@
 <div class="row">
-    {% for thumbnail in thumbnails %}
+    {% for thumbnail in thumbnails.items %}
     <div class="{{ thumbnail.class }}">
-        {% set linked = thumbnail.link  is defined %}
-        {% set tag = linked ? 'a href="' ~ thumbnail.link ~ '"' : 'div' %}
+        {% set linked = thumbnail.url  is defined %}
+        {% set tag = linked ? 'a href="' ~ thumbnail.url ~ '"' : 'div' %}
         {% set close_tag = linked ? 'a' : 'div' %}
         <{{ tag }} class="thumbnail">
         {{ grav["page"].media.images[thumbnail.image] }}
-        {% if thumbnails.sections is defined and thumbnails.sections[thumbnail.section] is defined %}
+        {% if linked == false and thumbnails.sections is defined and thumbnails.sections[thumbnail.section] is defined %}
         <div class="caption">
             {{ thumbnails.sections[thumbnail.section] }}
         </div>
