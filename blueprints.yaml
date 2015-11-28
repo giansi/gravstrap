@@ -11,3 +11,17 @@ demo: none
 keywords: bootstrap, theme
 bugs: https://github.com/giansi/grav-plugin-gravstrap/issues
 license: MIT
+
+form:
+  validation: strict
+  fields:
+      enabled:
+        type: toggle
+        label: Plugin status
+        highlight: 1
+        default: 0
+        options:
+          1: Enabled
+          0: Disabled
+        validate:
+          type: bool
