@@ -103,46 +103,4 @@ class GravstrapPlugin extends Plugin
         
         return $element->processedComponents();
     }
-
-    /**
-     * Parses the given file to fetch markdown sections.
-     * 
-     * A section is formatted as following:
-     * 
-     * [SECTION section-name]
-     * Markdown content
-     * [/SECTION]
-     * 
-     * @param type $fileName
-     * @return array
-     */
-    private function fetchSectionsFromFile($fileName)
-    {
-        $sectionsFile = $this->grav['page']->path() . '/' . $fileName;
-        if (!file_exists($sectionsFile)) {
-            return array();
-        }
-        
-        $sectionsContent = file_get_contents($sectionsFile);
-        $regex = '/\[SECTION\s([^\]]+)\](.*?)\[\/SECTION\]/si';
-        preg_match_all($regex, $sectionsContent, $matches, PREG_SET_ORDER);
-        if (!$matches) {
-            return array();
-        }
-        
-        $defaults = $this->config->get('system.pages');
-        if ($defaults['markdown_extra']) {
-            $parsedown = new \ParsedownExtra();
-        } else {
-            $parsedown = new \Parsedown();
-        }
-            
-        $sections = array();
-        foreach($matches as $match) {
-            $sectionName = $match[1];
-            $sections[$sectionName] = $parsedown->text($match[2]);
-        }
-        
-        return $sections;
-    }
 }
