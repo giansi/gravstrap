@@ -49,5 +49,5 @@ navbar_configuration:
     icon_type: fontawesome
     # Rendes the link as a button
     type: button
-    # Chosse the button type
+    # Defines the button type
     button_type: primary

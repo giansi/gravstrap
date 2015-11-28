@@ -14,18 +14,18 @@ gravstrap:
                     caption: Dropdown header
                 item1:
                     type: link
-                    href: "#"
-                    label: Page1 
+                    url: #
+                    menu: Page1 
                     # attributes:
                     #    class: something-cool           
                 item2:
                     type: link
                     disabled: true
-                    href: "#"
-                    label: Page2              
+                    url: "#"
+                    menu: Page2              
                 item3:
                     type: divider
                 item4:
                     type: link
-                    href: "#"
-                    label: Page3  
+                    url: "#"
+                    menu: Page3  
