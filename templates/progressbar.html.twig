@@ -1,6 +1,3 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
 {% if progressbar.label is defined %}
 <div class="progress-label{% if progressbar.fixed %} fixed{% endif %}{% if progressbar.right %} right{% endif %}">{{ progressbar.label }}</div>
 {% endif %}
@@ -9,4 +6,3 @@
     <span class="sr-only">{{ progressbar.value }}% Complete</span>
   </div>
 </div>
-{% endblock %}

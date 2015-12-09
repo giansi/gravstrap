@@ -1,7 +1,3 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
-{% set centering = navbar.centering|default('none') %}
 <nav class="navbar navbar-default{% if navbar.fixed|default('none') != 'none' %} navbar-fixed-{{ navbar.fixed }}{% endif %}{% if centering == 'centered' %} container{% elseif centering == 'fluid' %} container-fluid{% endif %}{% if navbar.inverted|default(false) %} navbar-inverse{% endif %} {{ navbar.attributes['class'] }}">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -25,4 +21,3 @@
     </div>
   </div>
 </nav>
-{% endblock %}

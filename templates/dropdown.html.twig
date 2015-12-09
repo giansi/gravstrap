@@ -1,6 +1,3 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
 <div class="{% if dropdown.dropup|default(false) %}dropup{% else %}dropdown{% endif %}">
   <button class="btn btn-{{ dropdown.type|default('default') }} dropdown-toggle {{ dropdown.attributes['class'] }}" type="button" data-toggle="dropdown"{% include 'partials/_attributes.html.twig' with {'attributes': dropdown.attributes, 'ignore': ['class']} %}>
     {{ dropdown.label }}
@@ -8,4 +5,3 @@
   </button>
   {% include "partials/_dropdown_items.html.twig" with {'items': dropdown.items } %}
 </div>
-{% endblock %}

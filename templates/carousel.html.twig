@@ -1,7 +1,5 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
-    <div id="{{ carousel.id }}" class="carousel slide" data-ride="carousel">
+{% set page = carousel.page is defined ? carousel.page : grav.page %}
+<div id="{{ carousel.id }}" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         {% for index in carousel.items|keys %}
         <li data-target="#{{ carousel.id }}"  data-slide-to="{{ index }}"{% if loop.first %} class="active"{% endif %}></li>
@@ -26,4 +24,3 @@
         <span class="sr-only">{{ carousel.next_label }}</span>
     </a>
 </div>
-{% endblock %}

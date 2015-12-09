@@ -1,6 +1,3 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
 <div class="panel panel-{{ panel.type|default('default') }}">
   <div class="panel-heading">{{ panel.title }}</div>
   <div class="panel-body">
@@ -13,4 +10,3 @@
   {{ panel.sections["table"] }}
   {{ panel.sections["listgroup"] }}
 </div>
-{% endblock %}

@@ -1,6 +1,3 @@
-{% extends 'base_component.html.twig' %}
-
-{% block component %}
 <div class="list-group">
     {% for item in listgroup.items %}
         <a href="{{ item.url }}" class="list-group-item{% if item.type is defined %} list-group-item-{{ item.type }}{% endif %}{% if item.active %} active{% endif %}{% if item.disabled %} disabled{% endif %}">
@@ -11,4 +8,3 @@
         </a>
     {% endfor %}
 </div>
-{% endblock %}
