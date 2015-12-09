@@ -1,3 +1,6 @@
+{% extends 'base_component.html.twig' %}
+
+{% block component %}
 <div class="panel-group" id="{{ accordion.id }}" role="tablist" aria-multiselectable="true">
   {% for item in accordion.items %}
   <div class="panel panel-default">
@@ -16,3 +19,4 @@
   </div>
   {% endfor %}
 </div>
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends 'base_component.html.twig' %}
+
+{% block component %}
 <div class="row">
     {% for thumbnail in thumbnails.items %}
     <div class="{{ thumbnail.class }}">
@@ -5,7 +8,7 @@
         {% set tag = linked ? 'a href="' ~ thumbnail.url ~ '"' : 'div' %}
         {% set close_tag = linked ? 'a' : 'div' %}
         <{{ tag }} class="thumbnail">
-        {{ grav["page"].media.images[thumbnail.image] }}
+        {{ page.media.images[thumbnail.image] }}
         {% if linked == false and thumbnails.sections is defined and thumbnails.sections[thumbnail.section] is defined %}
         <div class="caption">
             {{ thumbnails.sections[thumbnail.section] }}
@@ -15,3 +18,4 @@
     </div>
     {% endfor %}
 </div>
+{% endblock %}

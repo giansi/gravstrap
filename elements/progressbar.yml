@@ -9,3 +9,6 @@ gravstrap:
             type: primary | success / info / warning / danger
             striped: true
             animated: true
+            # label: Label
+            # fixed: false
+            # right: false

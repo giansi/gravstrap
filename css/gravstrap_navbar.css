@@ -37,13 +37,14 @@
   color: #fff;
 }
 .navbar .navbar-nav > li > a:hover {
-  color: #ffac27;
+  color: #fff;
+  text-decoration: underline;
 }
 .navbar .navbar-nav > .active > a {
-  color: #ffe727;
+  color: #d8d8d8;
 }
 .navbar .navbar-nav > .active > a:hover {
-  color: #ffac27;
+  color: #d8d8d8;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -161,23 +162,24 @@
   text-align: center;
 }
 .navbar.scrolled .navbar-brand {
-  color: #525252;
+  color: #010101;
   font-weight: bold;
 }
 .navbar.scrolled .navbar-brand:hover {
-  color: #525252;
+  color: #6e6e6e;
 }
 .navbar.scrolled .navbar-nav > li > a {
-  color: #525252;
+  color: #6e6e6e;
 }
 .navbar.scrolled .navbar-nav > li > a:hover {
-  color: #ffac27;
+  color: #6e6e6e;
+  text-decoration: underline;
 }
 .navbar.scrolled .navbar-nav > .active > a {
-  color: #ffe727;
+  color: #010101;
 }
 .navbar.scrolled .navbar-nav > .active > a:hover {
-  color: #ffac27;
+  color: #010101;
 }
 .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -303,13 +305,14 @@
   color: #fff;
 }
 .navbar .navbar-nav > li > a:hover {
-  color: #ffac27;
+  color: #fff;
+  text-decoration: underline;
 }
 .navbar .navbar-nav > .active > a {
-  color: #ffe727;
+  color: #d8d8d8;
 }
 .navbar .navbar-nav > .active > a:hover {
-  color: #ffac27;
+  color: #d8d8d8;
 }
 .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
   background-color: transparent;
@@ -427,23 +430,24 @@
   text-align: center;
 }
 .navbar.scrolled .navbar-brand {
-  color: #525252;
+  color: #010101;
   font-weight: bold;
 }
 .navbar.scrolled .navbar-brand:hover {
-  color: #525252;
+  color: #6e6e6e;
 }
 .navbar.scrolled .navbar-nav > li > a {
-  color: #525252;
+  color: #6e6e6e;
 }
 .navbar.scrolled .navbar-nav > li > a:hover {
-  color: #ffac27;
+  color: #6e6e6e;
+  text-decoration: underline;
 }
 .navbar.scrolled .navbar-nav > .active > a {
-  color: #ffe727;
+  color: #010101;
 }
 .navbar.scrolled .navbar-nav > .active > a:hover {
-  color: #ffac27;
+  color: #010101;
 }
 .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
   background-color: transparent;

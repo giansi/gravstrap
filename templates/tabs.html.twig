@@ -1,3 +1,6 @@
+{% extends 'base_component.html.twig' %}
+
+{% block component %}
 <ul class="nav nav-tabs" role="tablist">
 {% for name in tabs.sections|keys %}
     <li role="presentation"{% if loop.first %} class="active"{% endif %}><a href="#{{ name }}" aria-controls="{{ name }}" role="tab" data-toggle="tab">{{ name }}</a></li>
@@ -9,3 +12,4 @@
         <div role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}" id="{{ name }}">{{ content }}</div>
     {% endfor %}
 </div>
+{% endblock %}

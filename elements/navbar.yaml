@@ -7,38 +7,39 @@ gravstrap:
           # none, top, bottom
           fixed: none
           # none, centered, fluid
-          centering: none          
+          centering: none
           # inverted: true
           brand:
               text: Brand
               #image: brand.png
-          items:   
+          items:
               # Add as many menu or forms as you need
               menu0:
                   # menu, form
                   type: menu
+                  # onepage: true
                   # attributes:
                   #    rel: foo
                   #    class: something-cool
               form1:
                   type: form
-                  role: search 
+                  role: search
                   # alignment: left / right
                   input:
                       placeholder: Search
                   submit:
                       visible: true
                       type: default
-                      label: Submit                  
+                      label: Submit
               menu1:
                   type: menu
                   alignment: right
-                  
+
 # Page configuration
 # When any configuration is defined, the page is rendered in the first menu of the first toolbar, as a link
 navbar_configuration:
     # The navbar where the page is placed.
-    navbar: navbar1     
+    navbar: navbar1
     # The menu where the page is placed.
     menu_item: menu1
     # Renders the page as a dropdown and uses the children as dropdowns items

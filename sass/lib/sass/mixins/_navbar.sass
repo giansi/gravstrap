@@ -5,7 +5,7 @@
 @import "compass/css3/box-sizing"
 @import "compass/css3/filter"
 
-@mixin navbar($navbar-bg-color: transparent, $navbar-accent-color: #fff, $navbar-accent-hover-color: #ffac27, $navbar-brand-color: #fff, $navbar-brand-hover-color: #fff, $navbar-accent-active-color: #ffe727, $navbar-accent-active-hover-color: #ffac27, $navbar-padding: 0.5rem 8rem, $narbar-transition: all 0.5s ease)
+@mixin navbar($navbar-bg-color: transparent, $navbar-accent-color: #fff, $navbar-accent-hover-color: #fff, $navbar-brand-color: #fff, $navbar-brand-hover-color: #fff, $navbar-accent-active-color: #d8d8d8, $navbar-accent-active-hover-color: #d8d8d8, $navbar-padding: 0.5rem 8rem, $narbar-transition: all 0.5s ease)
     background-color: $navbar-bg-color
     border-bottom: 0
     +transition($narbar-transition)
@@ -33,7 +33,7 @@
         color: $navbar-brand-color
         font-weight: bold
 
-    .navbar-brand:hover 
+    .navbar-brand:hover
         color: $navbar-brand-hover-color
 
     .navbar-nav
@@ -42,11 +42,12 @@
 
         > li > a:hover
             color: $navbar-accent-hover-color
+            text-decoration: underline
 
-        > .active > a    
+        > .active > a
             color: $navbar-accent-active-color
 
-        > .active > a:hover 
+        > .active > a:hover
             color: $navbar-accent-active-hover-color
 
         > .active > a, > .active > a:hover
@@ -93,12 +94,12 @@
         border-bottom: 11px solid rgba(0, 0, 0, 0.2)
         top: -11px
 
-    .dropdown-menu:after 
+    .dropdown-menu:after
         @extend %triangle
         border-bottom: 11px solid #FFFFFF
         top: -10px
 
-    .dropdown-menu > li > a 
+    .dropdown-menu > li > a
         padding: 8px 20px
         color: #333333
 
@@ -109,7 +110,7 @@
         border-bottom: 0 none
         border-radius: 0 0 10px 10px
 
-    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus 
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus
         background-color: #F5F5F5
         color: #333333
         opacity: 1
@@ -119,10 +120,6 @@
     +navbar()
 
 .navbar.scrolled
-    +navbar(#fff, #525252, #ffac27, #525252, #525252, #ffe727, #ffac27)
+    +navbar(#fff, #6e6e6e, #6e6e6e, #010101, #6e6e6e, #010101, #010101)
     opacity: 0.9
     box-shadow: 0 0.05rem 1rem #333
-
-
-
-

@@ -1,3 +1,6 @@
+{% extends 'base_component.html.twig' %}
+
+{% block component %}
 <div class="well{% if well.small %} well-sm{% endif %}{% if well.large %} well-lg{% endif %}">
     {% if well.body is defined %}
         {{ well.body }}
@@ -5,3 +8,4 @@
         {{ well.sections.body }}
     {% endif %}
 </div>
+{% endblock %}

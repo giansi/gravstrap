@@ -18,6 +18,7 @@
 namespace Grav\Plugin;
 
 use \Grav\Common\Plugin;
+use \Grav\Common\Page\Page;
 
 class GravstrapPlugin extends Plugin
 {
@@ -62,6 +63,8 @@ class GravstrapPlugin extends Plugin
         $header = $this->grav["page"]->header();
         if (property_exists($header, "gravstrap")) {
             $gravstrapComponents = $header->gravstrap;
+            $collection = $this->grav['page']->collection();
+            $gravstrapComponents = array_merge($gravstrapComponents, $this->parseChildren($collection));
         }
         
         if (array_key_exists("gravstrap", $twig->twig_vars['site'])) {
@@ -70,6 +73,7 @@ class GravstrapPlugin extends Plugin
         
         $sections = $twig->twig_vars['sections'];
         $gravstrap = array();
+        $gravstrapCollection = array();
         foreach($gravstrapComponents as $type => $components) {
             $components = $this->configureElement($type, $config, $components);            
             $template = sprintf('%s.html.twig', $type);
@@ -77,11 +81,50 @@ class GravstrapPlugin extends Plugin
                 if (array_key_exists('from_file', $element)) {
                     $element["sections"] = $sections["page"][$element['from_file']];
                 }
-                $gravstrap[$name] = $twig->twig->render($template, array($type => $element));
+                $gravstrapCollection[$type][] = $gravstrap[$name] = $twig->twig->render($template, array($type => $element));
             }
         }
         
         $twig->twig_vars['gravstrap'] = $gravstrap;
+        $twig->twig_vars['gravstrap_collection'] = $gravstrapCollection;
+    }
+    
+    protected function parseChildren($children)
+    {
+        if (is_array($children)) {
+            return array();
+        }
+        
+        $modules = $children->modular();
+        if (count($modules) == 0) {
+            return array();
+        }
+        
+        $configurations = array();
+        foreach($children as $child) {
+            $header = $child->header();
+            if (property_exists($header, "gravstrap")) {
+                $gravstrapComponents = $this->addModulePageToGravstrap($header->gravstrap, $child);
+                
+                $configurations = array_merge($configurations, $gravstrapComponents);
+            }
+        }
+        
+        return $configurations;
+    }
+    
+    private function addModulePageToGravstrap($configuration, Page $page)
+    {
+        $gravstrapComponents = array(); 
+        foreach($configuration as $name => $values) {
+            foreach($values as $name1 => $value1) {
+                $gravstrapComponents[$name][$name1] = array_merge(array(
+                    'page' => $page,
+                ), $value1);
+            }
+        }
+        
+        return $gravstrapComponents;
     }
     
     private function configureElement($type, $config, $components)
