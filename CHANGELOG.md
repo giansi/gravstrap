@@ -1,3 +1,9 @@
+# v0.9.4
+## 12/11/2015
+
+1. [](#bugfix)
+    * Fixed navbar dropdown link, removing the gray background and fixed link color
+
 # v0.9.3
 ## 12/11/2015
 
