@@ -1,3 +1,9 @@
+# v0.9.3
+## 12/11/2015
+
+1. [](#bugfix)
+    * Used module folder name as scrolling id anchor for single page website navbar menu
+
 # v0.9.2
 ## 12/09/2015
 
