@@ -4,7 +4,7 @@
             {% if not module.header.hidemenu %}
                 {% set current_page = (module.active or module.activeChild) ? 'current' : '' %}
                 <li class="{{ current_module }}">
-                    <a class="smoothscroll" href="#{{ module.menu }}">{{ module.menu }}</a>
+                    <a class="smoothscroll" href="#{{ module.folder }}">{{ module.menu }}</a>
                 </li>
             {% endif %}
         {% endfor %}
