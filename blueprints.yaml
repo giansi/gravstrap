@@ -1,5 +1,5 @@
 name: Gravstrap
-version: 0.9.4
+version: 0.9.5
 description: "Gravstrap is a Grav plugin that gives you the ability to use Bootstrap elements in the Grav way"
 icon: share-alt
 author:
@@ -11,6 +11,10 @@ demo: none
 keywords: bootstrap, theme
 bugs: https://github.com/giansi/grav-plugin-gravstrap/issues
 license: MIT
+
+dependencies:
+  - markdownsections
+  - markdown-sections
 
 form:
   validation: strict

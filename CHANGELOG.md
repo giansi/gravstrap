@@ -1,3 +1,9 @@
+# v0.9.5
+## 12/13/2015
+
+1. [](#improved)
+    * Added plugin dependencies
+
 # v0.9.4
 ## 12/11/2015
 
