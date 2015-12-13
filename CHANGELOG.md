@@ -1,3 +1,9 @@
+# v0.9.6
+## 12/13/2015
+
+1. [](#bugfix)
+    * Removed wrong dependency (which was added for a test)
+
 # v0.9.5
 ## 12/13/2015
 
