@@ -78,12 +78,12 @@ class GravstrapPlugin extends Plugin
             $template = sprintf('%s.html.twig', $type);
             foreach($components as $name => $element) {
                 if (array_key_exists('from_file', $element)) {
-                    $element["sections"] = $sections["page"][$element['from_file']];
+                    $element["sections"] = $this->findSection($element, $sections);
                 }
                 $gravstrapCollection[$type][] = $gravstrap[$name] = $twig->twig->render($template, array($type => $element));
             }
         }
-
+        
         $twig->twig_vars['gravstrap'] = $gravstrap;
         $twig->twig_vars['gravstrap_collection'] = $gravstrapCollection;
     }
@@ -103,6 +103,22 @@ class GravstrapPlugin extends Plugin
         return $this->parseChildren($collection);
     }
 
+    private function findSection($element, $sections)
+    {
+        $fileName = $element['from_file'];
+        
+        if (array_key_exists($fileName, $sections["page"])) {
+            return $sections["page"][$fileName];
+        }
+        
+        if (!array_key_exists("page", $element)) {
+            return array();
+        }
+        
+        $module = $element["page"]->folder();
+        
+        return $sections["modular"][$module][$element['from_file']];
+    }
     
     private function parseChildren(Collection $children)
     {

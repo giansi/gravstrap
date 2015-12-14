@@ -1,3 +1,9 @@
+# v0.9.7
+## 12/14/2015
+
+1. [](#bugfix)
+    * Gravstrap can read configuration from modules
+
 # v0.9.6
 ## 12/13/2015
 
