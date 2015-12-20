@@ -15,11 +15,10 @@
  *
  */
 
-namespace Grav\Plugin;
+namespace Gravstrap;
 
 use Grav\Common\Page\Page;
-
-require_once (__DIR__ . '/BaseComponent.php');
+use Gravstrap\BaseComponent;
 
 /**
  * Class Progressbar handles a progressbar component

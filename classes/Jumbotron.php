@@ -15,9 +15,10 @@
  *
  */
 
-namespace Grav\Plugin;
+namespace Gravstrap;
 
-require_once (__DIR__ . '/BaseComponent.php');
+use Gravstrap\BaseComponent;
+use Grav\Common\Grav;
 
 /**
  * Class Jumbotron handles a jumbotron component
@@ -27,6 +28,23 @@ require_once (__DIR__ . '/BaseComponent.php');
 class Jumbotron extends BaseComponent
 {
     /**
+     * The Grav images
+     *
+     * @var array
+     */
+    private $images = array();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(Grav $grav, $plugin)
+    {
+        parent::__construct($grav, $plugin);
+
+        $this->images = $this->grav['page']->media()->images();
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function processComponents(array $components)
@@ -35,34 +53,57 @@ class Jumbotron extends BaseComponent
             if ( ! array_key_exists('image', $component)) {
                 continue;
             }
-            
-            $imageProperties = $component['image'];
-            $imageName = $imageProperties["name"];
-            unset($imageProperties["name"]);
-            
-            $images = $this->grav['page']->media()->images();
-            if (!array_key_exists($imageName, $images)) {
-                throw new \InvalidArgumentException(sprintf("The image %s has not been found in the current page. Please check the gravstrap header configuration for the %s page.", $imageName, $this->grav['page']->path()));
-            }
-            
-            $image = $images[$imageName];
-            foreach($imageProperties as $property => $value) {
-                if (!is_array($value)) {
-                    $value = array($value);
-                }
-                
-                try{
-                    call_user_func_array(array($image, $property), $value);
-                } catch (\Exception $ex) {
-                    $error = sprintf('The given arguments for "%s" method are wrong. To solve this issue, please check the "jumbotronic" configuration in the "%s" page. Generated error: %s',  $property, $this->grav['page']->path(), $ex->getMessage());
-                    $this->grav['log']->error($error);
-                }
-            }
 
-            $components[$name]["processed_image"] = $image;  
+            $components[$name]["processed_image"] = $this->processImage('image', $component);
         }
-        
+
         $this->components = $components;
     }
-    
+
+    /**
+     * Processes the image, applying the configuration attributes, specified by the given property
+     *
+     * @param string $propertyName
+     * @param array $component
+     * @return array
+     */
+    protected function processImage($propertyName, array $component)
+    {
+        $properties = $component[$propertyName];
+        $imageName = $this->initImage($properties);
+
+        return $this->doImageProcess($imageName, $properties);
+    }
+
+    private function initImage($properties)
+    {
+        $imageName = $properties["name"];
+        unset($properties["name"]);
+
+        if (!array_key_exists($imageName, $this->images)) {
+            throw new \InvalidArgumentException(sprintf("The image %s has not been found in the current page. Please check the gravstrap header configuration for the %s page.", $imageName, $this->grav['page']->path()));
+        }
+
+        return $imageName;
+    }
+
+    private function doImageProcess($imageName, $properties)
+    {
+        $image = $this->images[$imageName];
+        foreach($properties as $property => $value) {
+            if (!is_array($value)) {
+                $value = array($value);
+            }
+
+            try{
+                call_user_func_array(array($image, $property), $value);
+            }
+            catch (\Exception $ex) {
+                $error = sprintf('The given arguments for "%s" method are wrong. To solve this issue, please check the "jumbotron" configuration in the "%s" page. Generated error: %s',  $property, $this->grav['page']->path(), $ex->getMessage());
+                $this->grav['log']->error($error);
+            }
+        }
+
+        return $image;
+    }
 }

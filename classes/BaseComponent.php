@@ -15,11 +15,10 @@
  *
  */
 
-namespace Grav\Plugin;
+namespace Gravstrap;
 
 use Grav\Common\Grav;
-
-require_once(__DIR__ . '/ComponentInterface.php');
+use Gravstrap\ComponentInterface;
 
 /**
  * Class BaseComponent defines the base object that handles a Bootstrap component
@@ -27,38 +26,47 @@ require_once(__DIR__ . '/ComponentInterface.php');
  * @author Giansimon Diblas
  */
 abstract class BaseComponent implements ComponentInterface
-{        
+{
     /**
      * Grav instance
-     * 
-     * @var Grav 
+     *
+     * @var Grav
      */
-    
     protected $grav;
+
     /**
      * Component configuration
-     * 
+     *
      * @var array
      */
     protected $config;
-    
+
     /**
      * The processed components
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $components;
-    
+
+    /**
+     * The current plugin name
+     *
+     * @var string
+     */
+    private $plugin;
+
     /**
      * Constructor
-     * 
+     *
      * @param Grav $grav
+     * @param $plugin
      */
-    public function __construct(Grav $grav)
+    public function __construct(Grav $grav, $plugin)
     {
         $this->grav = $grav;
+        $this->plugin = $plugin;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -69,10 +77,10 @@ abstract class BaseComponent implements ComponentInterface
         if ( ! $this->config["enhanced"]) {
             return;
         }
-        
+
         $this->addAssets();
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -80,10 +88,10 @@ abstract class BaseComponent implements ComponentInterface
     {
         return $this->components;
     }
-    
+
     /**
      * Processes the component items
-     * 
+     *
      * @return array
      */
     protected function processComponents(array $components)
@@ -94,15 +102,15 @@ abstract class BaseComponent implements ComponentInterface
     private function addAssets()
     {
         foreach($this->config["assets"] as $type => $assets) {
-            
+
             $this->add($type, $assets);
         }
     }
-    
+
     private function add($type, $assets)
     {
         foreach($assets as $asset) {
-            $assetPath = sprintf('plugin://gravstrap/%s/%s', $type, $asset);
+            $assetPath = sprintf('plugin://%s/%s/%s', $this->plugin, $type, $asset);
             $this->grav['assets']->add($assetPath);
         }
     }

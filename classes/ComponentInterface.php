@@ -15,7 +15,7 @@
  *
  */
 
-namespace Grav\Plugin;
+namespace Gravstrap;
 
 /**
  * Defines the base interface to handle a Bootstrap Component
