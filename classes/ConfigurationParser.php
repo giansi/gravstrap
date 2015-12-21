@@ -56,7 +56,7 @@ class ConfigurationParser
     * Parses page configuration to look for gravstrap attributes and sets the gravstrap and gravstrap_collection twig variables.
     *
     * @param string $plugin The plugin to look for the configuration
-    * @param string $namespace The plugin classes namespace 
+    * @param string $namespace The plugin classes namespace
     */
     public function parseConfiguration($plugin, $namespace)
     {
@@ -66,7 +66,11 @@ class ConfigurationParser
         $gravstrapComponents = $this->findPageConfiguration($plugin);
         foreach($gravstrapComponents as $type => $components) {
             $components = $this->configureElement($type, $config, $components, $namespace, $plugin);
-            $gravstrap = array_merge($gravstrap, $this->renderComponents($components, $type));
+            $gravstrap = array_merge_recursive($gravstrap, $this->renderComponents($components, $type));
+        }
+        
+        if (empty($gravstrap)) {
+            return;
         }
 
         $this->twig->twig_vars[$plugin] = $gravstrap['gravstrap'];
