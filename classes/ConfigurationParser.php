@@ -18,6 +18,7 @@
 namespace Gravstrap;
 
 use Grav\Common\Grav;
+use \Grav\Common\Page\Page;
 use \Grav\Common\Page\Collection;
 
 /**
@@ -68,7 +69,7 @@ class ConfigurationParser
             $components = $this->configureElement($type, $config, $components, $namespace, $plugin);
             $gravstrap = array_merge_recursive($gravstrap, $this->renderComponents($components, $type));
         }
-        
+
         if (empty($gravstrap)) {
             return;
         }
