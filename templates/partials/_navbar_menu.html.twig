@@ -8,6 +8,25 @@
                 </li>
             {% endif %}
         {% endfor %}
+    {% elseif menu.langswitcher == true %}
+        {% set langobj = grav['language'] %}
+        {% set langswitcher = grav['twig'].twig_vars['langswitcher'] %}
+        {% set full_name = menu.full_language_name is defined ? menu.full_language_name : true %}
+        {% set languages = full_name ? langswitcher.languages : grav.language.getLanguages %}
+
+        {% for key, language in languages %}
+
+            {% if key == langswitcher.current %}
+                {% set lang_url = page.url %}
+                {% set active_class = 'active' %}
+            {% else %}
+                {% set lang_url = base_url_simple ~ langobj.getLanguageURLPrefix(key)~langswitcher.page_route ?: '/' %}
+                {% set active_class = '' %}
+            {% endif %}
+            {% set language_name = full_name ? language.nativeName : language %}
+
+            <li class="{{ active_class }}"><a href="{{ lang_url }}">{{  language_name|capitalize }}</a></li>
+        {% endfor %}
     {% else %}
         {% for item in menu.items %}
             {% if item.type == 'link' %}

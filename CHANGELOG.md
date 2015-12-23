@@ -1,3 +1,9 @@
+# v0.9.8
+## 12/23/2015
+
+1. [](#new)
+    * Added languages menu to navbar
+
 # v0.9.7
 ## 12/14/2015
 

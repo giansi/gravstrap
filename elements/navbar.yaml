@@ -18,6 +18,8 @@ gravstrap:
                   # menu, form
                   type: menu
                   # onepage: true
+                  # langswitcher: true
+                  # full_language_name: true
                   # attributes:
                   #    rel: foo
                   #    class: something-cool
