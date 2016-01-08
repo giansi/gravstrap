@@ -18,6 +18,9 @@
   .navbar .navbar-nav > li > a {
     color: #fff !important;
   }
+  .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
+    background-color: #131313 !important;
+  }
 }
 .navbar .navbar-center {
   display: inline-block;
@@ -158,6 +161,9 @@
   .navbar.scrolled .navbar-nav > li > a {
     color: #fff !important;
   }
+  .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
+    background-color: #131313 !important;
+  }
 }
 .navbar.scrolled .navbar-center {
   display: inline-block;
@@ -289,6 +295,9 @@
   }
   .navbar .navbar-nav > li > a {
     color: #fff !important;
+  }
+  .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover {
+    background-color: #131313 !important;
   }
 }
 .navbar .navbar-center {
@@ -423,6 +432,9 @@
   }
   .navbar.scrolled .navbar-nav > li > a {
     color: #fff !important;
+  }
+  .navbar.scrolled .navbar-nav > .active > a, .navbar.scrolled .navbar-nav > .active > a:hover {
+    background-color: #131313 !important;
   }
 }
 .navbar.scrolled .navbar-center {
