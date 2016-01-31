@@ -1,0 +1,22 @@
+<div id="{{ id }}" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        {% for index in items|keys %}
+        <li data-target="#{{ id }}"  data-slide-to="{{ index }}"{% if loop.first %} class="active"{% endif %}></li>
+        {% endfor %}
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+        {% for item in items %}
+        {{ item }}
+        {% endfor %}
+    </div>
+
+    <a class="left carousel-control" href="#{{ id }}" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">{{ previous_label }}</span>
+    </a>
+    <a class="right carousel-control" href="#{{ id }}" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">{{ next_label }}</span>
+    </a>
+</div>

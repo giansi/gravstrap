@@ -1,0 +1,6 @@
+{% if icon is defined %}
+<span class="fa-stack{% if large_icon|default(false) == true %} fa-lg{% endif %}">
+  <i class="fa fa-stack-2x fa-{{ icon_container|default('circle-thin') }}"></i>
+  <i class="fa fa-stack-1x fa-{{ icon }}"></i>
+</span>
+{% endif %}

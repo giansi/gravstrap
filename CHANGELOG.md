@@ -1,21 +1,3 @@
-# v0.9.10
-## 01/08/2016
-
-1. [](#bugfix)
-    * Fixed toggled navbar active link background color
-
-# v0.9.9
-## 12/23/2015
-
-1. [](#bugfix)
-    * Added missing use directive to ConfigurationParser class
-
-# v0.9.8
-## 12/23/2015
-
-1. [](#new)
-    * Added languages menu to navbar
-
 # v0.9.7
 ## 12/14/2015
 

@@ -1,0 +1,9 @@
+<div class="{% if dropup|default(false) %}dropup{% else %}dropdown{% endif %}">
+  <button class="btn btn-{{ type|default('default') }} dropdown-toggle {{ attributes['class'] }}" type="button" data-toggle="dropdown"{% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+    {{ label }}
+    <span class="caret"></span>
+  </button>
+  {% for item in items %}
+    {{ item }}
+  {% endfor %}
+</div>

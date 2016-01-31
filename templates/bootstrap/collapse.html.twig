@@ -1,0 +1,8 @@
+<{{ tag }} class="btn btn-{{ button_type|default('default') }} {{ attributes.class }}" role="button" data-toggle="collapse" {% if tag == 'a' %}href="#{{ id }}"{% elseif tag == 'button' %}data-target="#{{ id }}"{% endif %} {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+  {{ button_label }}
+</{{ tag }}>
+<div class="collapse" id="{{ id }}">
+    {% for item in items %}
+        {{ item }}
+    {% endfor %}
+</div>

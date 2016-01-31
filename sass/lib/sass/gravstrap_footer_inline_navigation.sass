@@ -1,0 +1,50 @@
+@import "compass/typography/lists/inline-list"
+@import "compass/typography/lists/bullets"
+
+.footer-one
+    text-align: center
+
+    .row:first-child
+        margin-bottom: 3rem
+
+    strong
+        color: #ffe727
+
+    .navigation
+        padding: 0
+        +inline-list
+
+        li
+            font-size: 1.8rem
+            margin-right: 1rem
+
+@media screen and (min-width: 481px)
+    .navigation
+        li
+            font-size: 1.8rem
+            margin-right: 1rem
+
+            & + li::before
+                padding-right: 1rem
+                content: "\00BB"
+
+@media screen and (max-width: 480px)
+    .navigation
+        +no-bullet
+
+    .footer-one
+        .row:last-child
+            margin-top: 0.8rem
+
+.footer-license
+    background-color: rgba(15, 15, 15, 0.97)
+    color: #fff
+    text-align: center
+    font-size: 1.5rem
+    padding: 1rem
+
+    a
+        color: #ffe727
+
+        &:hover
+            text-decoration: underline

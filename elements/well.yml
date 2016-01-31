@@ -1,7 +1,0 @@
-gravstrap:
-    well:
-        well1:       
-            #from_file: well.markdown     
-            body: Look, I'm in a well!
-            small: false
-            large: false

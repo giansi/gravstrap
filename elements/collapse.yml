@@ -1,8 +1,0 @@
-gravstrap:
-    collapse:
-        collapse1:
-            #from_file: collapse.markdown 
-            id: collapseExample 
-            tag: a | button
-            button_caption: Read me
-            body: Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.

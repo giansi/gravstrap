@@ -1,0 +1,14 @@
+<div class="panel panel-{{ type|default('default') }}">
+  <div class="panel-heading">{{ title }}</div>
+  <div class="panel-body">
+      {{ content }}
+      {#
+    {% if panel.body is defined %}
+    {{ panel.body }}
+    {% else %}
+    {{ panel.sections["body"] }}
+    {% endif %}#}
+  </div>{#
+  {{ panel.sections["table"] }}
+  {{ panel.sections["listgroup"] }}#}
+</div>

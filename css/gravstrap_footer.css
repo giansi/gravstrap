@@ -1,0 +1,23 @@
+.footer {
+  padding: 2rem;
+  background-color: rgba(30, 30, 30, 0.97);
+  margin-top: 3rem;
+  color: #ccc;
+  font-size: 1.5rem;
+}
+.footer hr {
+  color: #ccc;
+}
+.footer h4 {
+  font-size: 1.8rem;
+}
+.footer a {
+  color: #fff;
+  font-weight: bold;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+.footer .right {
+  text-align: right;
+}

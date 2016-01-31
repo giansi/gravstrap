@@ -1,0 +1,10 @@
+{% if icon is defined and icon != "" %}
+{% set type = icon_type|default('glyphicon') %}
+{% if type == 'glyphicon' %}
+<span class="glyphicon glyphicon-{{ icon }}"></span>
+{% elseif type == 'fontawesome' %}
+<i class="fa fa-{{ icon }}"></i>
+{% else %}
+<p>{{ 'icon_type ' ~ type ~ ' is not supported'}}</p>
+{% endif %}
+{% endif %}

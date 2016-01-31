@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.inline-navigation {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.inline-navigation ul li {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 481px) {
+  .inline-navigation ul {
+    list-style-type: none;
+  }
+  .inline-navigation ul, .inline-navigation ul li {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+  .inline-navigation ul li + li::before {
+    padding: 0 0.5rem;
+    content: "»";
+  }
+}
+@media screen and (max-width: 480px) {
+  .inline-navigation ul {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0;
+  }
+}

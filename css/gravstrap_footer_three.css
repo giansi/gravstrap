@@ -1,0 +1,7 @@
+.footer-with-columns .navigation {
+  padding: 0;
+}
+.footer-with-columns .navigation li {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}

@@ -1,6 +1,0 @@
-gravstrap:
-    pageheader:        
-        # Add as many pageheader as you need
-        pageheader1:
-            title: Example page header
-            subtitle: Subtext for header

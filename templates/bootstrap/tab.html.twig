@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs" role="tablist">
+{% for name in items|keys %}
+    <li role="presentation"{% if loop.first %} class="active"{% endif %}><a href="#{{ name }}" aria-controls="{{ name }}" role="tab" data-toggle="tab">{{ name }}</a></li>
+{% endfor %}
+</ul>
+
+<div class="tab-content {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+    {% for item in items %}
+        {{ item }}
+    {% endfor %}
+</div>

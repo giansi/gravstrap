@@ -1,0 +1,2 @@
+{% set icon_stacked = stacked|default(false) == true ? '_stacked' : '' %}
+<a href="{{ url }}"{% include 'partials/_attributes.html.twig' %}>{% include 'basic/icon' ~ icon_stacked ~ '.html.twig'%}{{ menu }}</a>

@@ -1,6 +1,0 @@
-<{{ collapse.tag }} class="btn btn-primary" role="button" data-toggle="collapse" {% if collapse.tag == 'a' %}href="#{{ collapse.id }}"{% elseif collapse.tag == 'button' %}data-target="#{{ collapse.id }}"{% endif %} aria-expanded="false" aria-controls="collapse">
-  {{ collapse.button_caption }}
-</{{ collapse.tag }}>
-<div class="collapse" id="{{ collapse.id }}">
-    {% include 'well.html.twig' with{'well': collapse} %}
-</div>

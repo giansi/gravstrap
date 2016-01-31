@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-{{ type|default('default') }} navbar-btn {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>{% include 'basic/icon.html.twig' %}{{ menu }}</button>

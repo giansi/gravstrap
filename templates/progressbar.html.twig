@@ -1,8 +1,0 @@
-{% if progressbar.label is defined %}
-<div class="progress-label{% if progressbar.fixed %} fixed{% endif %}{% if progressbar.right %} right{% endif %}">{{ progressbar.label }}</div>
-{% endif %}
-<div class="progress">
-  <div class="progress-bar progress-bar-{{ progressbar.type }}{% if progressbar.striped %} progress-bar-striped{% endif %}{% if progressbar.animated %} active{% endif %}" role="progressbar" aria-valuenow="{{ progressbar.value }}" aria-valuemin="{{ progressbar.min }}" aria-valuemax="{{ progressbar.max }}" style="{% if progressbar.show_label %}min-width: 2em; {% endif %}width: {{ progressbar.value }}%">{% if progressbar.show_label %}{{ progressbar.value }}%{% endif %}
-    <span class="sr-only">{{ progressbar.value }}% Complete</span>
-  </div>
-</div>

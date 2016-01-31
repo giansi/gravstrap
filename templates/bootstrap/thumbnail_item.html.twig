@@ -1,0 +1,13 @@
+<div class="{{ class|default('col-md-4') }}">
+    {% set linked = url is not null %}
+    {% set tag = linked ? 'a href="' ~ url ~ '"' : 'div' %}
+    {% set close_tag = linked ? 'a' : 'div' %}
+    <{{ tag }} class="thumbnail">
+    {{ grav.page.media.images[image] }}
+    {% if linked == false %}
+    <div class="caption">
+        {{ content }}
+    </div>
+    {% endif %}
+    </{{ close_tag }}>
+</div>

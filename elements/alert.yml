@@ -1,9 +1,0 @@
-gravstrap:
-    alert:
-        alert1:
-            #from_file: alert.markdown
-            #type: danger | success / info / warning 
-            body: Oh snap! Change a few things up and try submitting again.
-            #attributes:
-            #    id: myAlert
-            #    class: alert-dismissible

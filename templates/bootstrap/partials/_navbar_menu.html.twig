@@ -1,0 +1,16 @@
+<ul class="nav navbar-nav {{ attributes['class'] }} {% include 'bootstrap/partials/_navbar_item_alignment.html.twig' %}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+    {% if onepage == true %}
+        {% for module in grav.page.collection() %}
+            {% if not module.header.hidemenu %}
+                {% set current_page = (module.active or module.activeChild) ? 'current' : '' %}
+                <li class="{{ current_module }}">
+                    <a class="smoothscroll" href="#{{ module.folder }}">{{ module.menu }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    {% endif %}
+</ul>

@@ -17,12 +17,25 @@
 
 namespace Grav\Plugin;
 
-use \Grav\Common\Plugin;
-use \Composer\Autoload\ClassLoader;
-use \Gravstrap\ConfigurationParser;
+use Grav\Common\Plugin;
+use Composer\Autoload\ClassLoader;
+use RocketTheme\Toolbox\Event\Event;
+use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 class GravstrapPlugin extends Plugin
 {
+    /**
+     * HandlersCollection instance
+     * 
+     * @var HandlersCollection 
+     */
+    protected $handlers;
+
+    /**
+     * ClassLoader instance
+     *
+     * @var ClassLoader
+     */
     private $loader = null;
 
     /**
@@ -31,7 +44,8 @@ class GravstrapPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
         ];
     }
 
@@ -42,8 +56,22 @@ class GravstrapPlugin extends Plugin
     {
         $this->enable([
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-            'onTwigSiteVariables' => ['onTwigSiteVariables', 0]
+            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
         ]);
+    }
+
+    /**
+     * Initializes the shortcodes
+     * 
+     * @param Event $e
+     */
+    public function onShortcodeHandlers(Event $e)
+    {
+        $this->handlers = $e['handlers'];
+
+        $namespace = 'Gravstrap';
+        $classesFolder = __DIR__ . '/classes';
+        $this->init($namespace, $classesFolder);
     }
 
     /**
@@ -51,8 +79,9 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigTemplatePaths()
     {
-        $this->autoload('Gravstrap', array(__DIR__ . '/classes'));
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates/modules';
+        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates/components';
     }
 
     /**
@@ -60,11 +89,91 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigSiteVariables()
     {
-        $configurationParser = new ConfigurationParser($this->grav);
-        $configurationParser->parseConfiguration('gravstrap', 'Gravstrap');
+        $this->grav['page']->find('/common')->content();
     }
 
-    protected function autoload($namespace, $folders)
+    /**
+     * Autoloadloads plugin library and initializes the shortcodes
+     * 
+     * @param type $namespace
+     * @param type $classesFolder
+     */
+    protected function init($namespace, $classesFolder)
+    {
+        $this->autoload($namespace, array($classesFolder));
+        $files = $this->scanDir($classesFolder);
+        foreach($files as $file) {
+            $file = str_replace($classesFolder . '/', '', $file);
+            $file = str_replace('/', '\\', $file);
+            $class = $namespace . '\\' . str_replace('.php', '', $file);
+            
+            // Make sure to initialize only objects that implements the GravShortcodeInterface
+            if (!in_array('Gravstrap\\Base\\GravShortcodeInterface', class_implements($class))) {
+                continue;
+            }
+
+            // Excludes abstract classes and interfaces
+            $reflectionClass = new \ReflectionClass($class);
+            if(!$reflectionClass->IsInstantiable()) {
+                continue;
+            }
+
+            $this->registerShortcode($class);
+        }
+    }
+
+    /**
+     * Registers the shortcode
+     * 
+     * @param string $className
+     */
+    protected function registerShortcode($className)
+    {
+        $class = new \ReflectionClass($className);
+        $shortcodeObject = $class->newInstanceArgs(array($this->grav));
+        $this->handlers->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
+            $this->grav["assets"]->add($shortcodeObject->assets());
+
+            return $shortcodeObject->processShortcode($shortcode);
+        });
+    }
+
+    /**
+     * Scans a directory recursively and returns files found
+     * 
+     * @param string $dir
+     * @param array $allowedExtensions
+     * @return array
+     */
+    protected function scanDir($dir, $allowedExtensions = array('php'))
+    {
+        $files = array();
+        $dh  = opendir($dir);
+        while (false !== ($filename = readdir($dh))) {
+            $filePath = $dir . '/' . $filename;
+            if ($filename != '.' && $filename != '..' && is_dir($filePath)) {
+                $files = array_merge($files, $this->scanDir($filePath));
+
+                continue;
+            }
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            if ( ! in_array($ext, $allowedExtensions)) {
+                continue;
+            }
+
+            $files[] = $filePath;
+        }
+
+        return $files;
+    }
+
+    /**
+     * Autoloads a namespace, parsing the given folders
+     *
+     * @param string $namespace
+     * @param array $folders
+     */
+    protected function autoload($namespace, array $folders)
     {
         if ($this->loader === null) {
             $this->loader = new ClassLoader();

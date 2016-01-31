@@ -1,4 +1,0 @@
-<li class="dropdown {{ dropdown.attributes['class'] }}"{% include 'partials/_attributes.html.twig' with {'attributes': dropdown.attributes, 'ignore': ['class'] } %}>
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ dropdown.menu }} <span class="caret"></span></a>
-    {% include "partials/_dropdown_items.html.twig" with {'items': dropdown.items } %}
-</li>

@@ -1,0 +1,8 @@
+<form class="navbar-form {% include 'bootstrap/partials/_navbar_item_alignment.html.twig' %}" role="{{ role }}">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="{{ placeholder }}">
+    </div>
+    {% if submit_visible %}
+    {% include 'basic/button.html.twig' %}
+    {% endif %}
+</form>

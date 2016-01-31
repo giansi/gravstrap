@@ -1,9 +1,0 @@
-<div class="jumbotron" {% if(jumbotron.processed_image) %}style="background-image: url('{{ jumbotron.processed_image.url }}')"{% endif %}>
-    {% if jumbotron.fullwidth == true %}
-    <div class="container">
-    {% endif %}
-    {{ jumbotron.sections[jumbotron.section] }}    
-    {% if jumbotron.fullwidth == true %}
-    </div>
-    {% endif %}
-</div>

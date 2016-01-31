@@ -1,7 +1,0 @@
-{% if item.icon is defined %}
-<span class="fa-stack{% if item.large_icon|default(false) == true %} fa-lg{% endif %}">
-  <i class="fa fa-stack-2x fa-{{ item.container_icon|default('circle-thin') }}"></i>
-  <i class="fa fa-stack-1x fa-{{ item.icon }}"></i>
-</span>
-{% endif %}
-
