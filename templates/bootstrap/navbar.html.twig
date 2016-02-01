@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if centering == 'centered' %} container{% elseif centering == 'fluid' %} container-fluid{% endif %}{% if inverted|default(false) %} navbar-inverse{% endif %} {{ attributes['class'] }}">
+<nav {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if centering == 'centered' %} container{% elseif centering == 'fluid' %} container-fluid{% endif %}{% if inverted|default(false) %} navbar-inverse{% endif %} {{ attributes['class'] }}">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#{{ navbar.id }}" aria-expanded="false">
@@ -10,7 +10,7 @@
       <a class="navbar-brand" href="#">{% if brand_image is defined %} {{ page.media[brand_image].resize(20, 20) }} {% else %} {{ brand_text }} {% endif %}</a>
     </div>
 
-    <div id="{{ id }}" class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
         {% for item in items %}
             {{ item }}
         {% endfor %}

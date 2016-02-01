@@ -1,4 +1,4 @@
-<div class="list-group">
+<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="list-group">
     {% for item in items %}
         {{ item }}
     {% endfor %}

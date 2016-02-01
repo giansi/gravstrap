@@ -50,6 +50,7 @@ class Thumbnail extends BaseShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'items' => RegisteredShortcodes::get($this->getShortcodeHash($shortcode)),
         ]);
     }

@@ -49,6 +49,7 @@ class Icon extends BaseHybridShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'icon' => $shortcode->getParameter('icon'),
             'icon_type' => $shortcode->getParameter('icon_type'),
         ]);

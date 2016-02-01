@@ -49,6 +49,7 @@ class Button extends BaseHybridShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'button_label' => $shortcode->getParameter('button_label'),
             'button_type' => $shortcode->getParameter('button_type'),
             'button_attributes' => $this->parseAttributes($shortcode->getParameter('button_attributes')),

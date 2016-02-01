@@ -1,4 +1,4 @@
-<{{ tag }} class="btn btn-{{ button_type|default('default') }} {{ attributes.class }}" role="button" data-toggle="collapse" {% if tag == 'a' %}href="#{{ id }}"{% elseif tag == 'button' %}data-target="#{{ id }}"{% endif %} {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+<{{ tag }} {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="btn btn-{{ button_type|default('default') }} {{ attributes.class }}" role="button" data-toggle="collapse" {% if tag == 'a' %}href="#{{ id }}"{% elseif tag == 'button' %}data-target="#{{ id }}"{% endif %} {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
   {{ button_label }}
 </{{ tag }}>
 <div class="collapse" id="{{ id }}">

@@ -1,4 +1,4 @@
-<div class="panel-group" id="{{ id }}" role="tablist" aria-multiselectable="true">
+<div class="panel-group" {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} role="tablist" aria-multiselectable="true">
   {% for item in items %}
       {{ item }}
   {% endfor %}

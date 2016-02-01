@@ -1,4 +1,4 @@
-<div id="{{ id }}" class="carousel slide" data-ride="carousel">
+<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         {% for index in items|keys %}
         <li data-target="#{{ id }}"  data-slide-to="{{ index }}"{% if loop.first %} class="active"{% endif %}></li>

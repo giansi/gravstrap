@@ -49,6 +49,7 @@ class IconStacked extends BaseHybridShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'icon' => $shortcode->getParameter('icon'),
             'large_icon' => $this->stringToBoolean($shortcode->getParameter('large_icon')),
             'icon_container' => $shortcode->getParameter('icon_container'),

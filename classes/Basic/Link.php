@@ -49,6 +49,7 @@ class Link extends BaseHybridShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'url' => $shortcode->getParameter('url'),
             'menu' => $shortcode->getParameter('menu'),
             'icon_type' => $this->findParameterInCascade($shortcode, 'icon_type'),

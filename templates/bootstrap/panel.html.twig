@@ -1,4 +1,4 @@
-<div class="panel panel-{{ type|default('default') }}">
+<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="panel panel-{{ type|default('default') }}">
   <div class="panel-heading">{{ title }}</div>
   <div class="panel-body">
       {{ content }}

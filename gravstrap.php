@@ -89,7 +89,12 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigSiteVariables()
     {
-        $this->grav['page']->find('/common')->content();
+        $page = $this->grav['page']->find('/common');
+        if (null === $page) {
+            return;
+        }
+            
+        $page->content();
     }
 
     /**
@@ -117,7 +122,7 @@ class GravstrapPlugin extends Plugin
             if(!$reflectionClass->IsInstantiable()) {
                 continue;
             }
-
+            
             $this->registerShortcode($class);
         }
     }

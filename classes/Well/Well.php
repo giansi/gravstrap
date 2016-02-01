@@ -49,6 +49,7 @@ class Well extends BaseHybridShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'small' => $this->stringToBoolean($shortcode->getParameter('small')),
             'large' => $this->stringToBoolean($shortcode->getParameter('large')),
             'content' => $this->fixContent($shortcode),

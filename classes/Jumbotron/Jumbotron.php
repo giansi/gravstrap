@@ -38,17 +38,28 @@ class Jumbotron extends BaseShortcode
     /**
      * {@inheritdoc}
      */
+    public function assets()
+    {
+        return array(
+            'plugin://gravstrap/css/gravstrap_jumbotron.css',            
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function template()
     {
         return 'bootstrap/jumbotron.html.twig';
-    }
-
+    }    
+    
     /**
      * {@inheritdoc}
      */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'image' => $shortcode->getParameter('image'),
             'fullwidth' => $shortcode->getParameter('fullwidth'),
             'attributes' => $this->parseAttributes($shortcode->getParameter('attributes')),

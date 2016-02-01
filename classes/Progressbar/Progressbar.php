@@ -38,6 +38,16 @@ class Progressbar extends BaseShortcode
     /**
      * {@inheritdoc}
      */
+    public function assets()
+    {
+        return array(
+            'plugin://gravstrap/css/gravstrap_progressbar.css',            
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function template()
     {
         return 'bootstrap/progressbar.html.twig';
@@ -49,6 +59,7 @@ class Progressbar extends BaseShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {        
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
             'label' => $shortcode->getParameter('label'),
             'type' => $shortcode->getParameter('type'),
             'striped' => $this->stringToBoolean($shortcode->getParameter('striped')),

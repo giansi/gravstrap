@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog" {% include 'partials/_attributes.html.twig' %}>
+<div class="modal fade" {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} tabindex="-1" role="dialog" {% include 'partials/_attributes.html.twig' %}>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

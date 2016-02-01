@@ -1,5 +1,5 @@
 {% set splitbutton_type = type|default('default') %}
-<div class="btn-group">
+<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="btn-group">
   <button type="button" class="btn btn-{{ splitbutton_type }} {{ attributes['class'] }}">{{ label }}</button>
   <button type="button" class="btn btn-{{ splitbutton_type }} dropdown-toggle {{ attributes['class'] }}" data-toggle="dropdown"{% include 'partials/_attributes.html.twig' with {'attributes': attributes, 'ignore': ['class']} %}>
     <span class="caret"></span>
