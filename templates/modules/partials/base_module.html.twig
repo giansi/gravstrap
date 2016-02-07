@@ -1,0 +1,16 @@
+<section {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %}>
+    <div class="container {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+        {% block module_page_content %}
+            {% if content != "" %}
+            <div class="row">
+                <div {% include 'partials/_attributes.html.twig' with { 'attributes': column_attributes } %}>
+                    {{ content }}
+                </div>
+            </div>
+            {% endif %}
+        {% endblock %}
+        
+        {% block module_content %}
+        {% endblock %}
+    </div>
+</section>

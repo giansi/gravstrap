@@ -17,7 +17,7 @@
 
 namespace Grav\Plugin;
 
-use Grav\Common\Plugin;
+use \Grav\Common\Plugin;
 use Composer\Autoload\ClassLoader;
 use RocketTheme\Toolbox\Event\Event;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
@@ -104,6 +104,29 @@ class GravstrapPlugin extends Plugin
      * @param type $classesFolder
      */
     protected function init($namespace, $classesFolder)
+    {
+        $this->autoload($namespace, array($classesFolder));
+        $files = $this->scanDir($classesFolder);
+        foreach($files as $file) {
+            $file = str_replace($classesFolder . '/', '', $file);
+            $file = str_replace('/', '\\', $file);
+            $class = $namespace . '\\' . str_replace('.php', '', $file);
+            // Make sure to initialize only objects that implements the GravShortcodeInterface
+            if (!in_array('Gravstrap\\Base\\GravShortcodeInterface', class_implements($class))) {
+                continue;
+            }
+            
+            // Excludes abstract classes and interfaces
+            $reflectionClass = new \ReflectionClass($class);
+            if(!$reflectionClass->IsInstantiable()) {
+                continue;
+            }
+            
+            $this->registerShortcode($class);
+        }
+    }
+    
+    protected function initGravstrap($namespace, $classesFolder)
     {
         $this->autoload($namespace, array($classesFolder));
         $files = $this->scanDir($classesFolder);

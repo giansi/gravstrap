@@ -1,19 +1,19 @@
 name: Gravstrap
-version: 0.9.7
-description: "Gravstrap is a Grav plugin that gives you the ability to use Bootstrap elements in the Grav way"
+version: 1.0.0-beta
+description: "Gravstrap is a Grav plugin that gives you the ability to use Bootstrap elements as Shortcodes."
 icon: share-alt
 author:
   name: Giansimon Diblas
   email: info@diblas.net
   url: http://diblas.net
-homepage: http://diblas.net/plugins/use-bootstrap-elements-in-the-grav-cms-way
+homepage: http://diblas.net/plugins/use-bootstrap-components-as-shortcodes-in-grav-cms
 demo: none
 keywords: bootstrap, theme
-bugs: https://github.com/giansi/grav-plugin-gravstrap/issues
+bugs: https://github.com/giansi/gravstrap/issues
 license: MIT
 
 dependencies:
-  - markdown-sections
+  - shortcode-core
 
 form:
   validation: strict

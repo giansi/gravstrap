@@ -32,8 +32,18 @@ abstract class BaseShortcode implements GravShortcodeInterface
      *
      * @var Grav
      */
-    protected $grav;
-
+    protected $grav; 
+    
+    /**
+     * @var ShortcodeInterface 
+     */
+    private $parentShortcode;
+    
+    /**
+     * @var string
+     */
+    private $parentHash;
+    
     /**
      * Constructor
      *
@@ -55,21 +65,48 @@ abstract class BaseShortcode implements GravShortcodeInterface
     abstract protected function template();
 
     /**
+     * Returns the parent shortcode 
+     * 
+     * @return ShortcodeInterface
+     */
+    public function parentShortcode()
+    {
+        return $this->parentShortcode;
+    }
+    
+    /**
+     * Returns the parent shortcode hash
+     * 
+     * @return string
+     */
+    public function parentHash()
+    {
+        return $this->parentHash;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function processShortcode(ShortcodeInterface $shortcode)
     {
         $output = $this->renderShortcode($shortcode);
+        if ($output == '') {
+            return '';
+        }
 
-        $render = ($shortcode->getParameter('render') == 'true') ? true : false;
+        $render = (strtolower($shortcode->getParameter('render')) !== 'false') ? true : false;
         if ($render) {
             return $output;
         }
 
         $id = $shortcode->getParameter('id');
+        if (null === $id) {
+            return '';
+        }
+        
         $this->grav['twig']->twig_vars[$id] = $output;
 
-        return "";
+        return '';
     }
 
     /**
@@ -87,8 +124,41 @@ abstract class BaseShortcode implements GravShortcodeInterface
      * @return string
      */
     protected function renderShortcode(ShortcodeInterface $shortcode)
+    {        
+        $this->fetchParentInformation($shortcode);
+        $output = $this->renderOutput($shortcode);
+        if (null === $output) 
+        {   return '';
+        
+        }
+        
+        $render = (strtolower($shortcode->getParameter('render')) === 'true') ? true : false;
+        if (null === $this->parentShortcode() || $render) {
+            return $output;
+        }
+        
+        $this->registerOutput($output);
+    }
+
+    /**
+     * Fetches the parent and its hash from the given shortcode
+     * 
+     * @param ShortcodeInterface $shortcode
+     */
+    protected function fetchParentInformation(ShortcodeInterface $shortcode)
     {
-        return $this->renderOutput($shortcode);
+        $this->parentShortcode = $shortcode->getParent();
+        $this->parentHash = $this->getShortcodeHash($this->parentShortcode);
+    }
+    
+    /**
+     * Registers the given output for the handled shortcode parent
+     * 
+     * @param mixed $output
+     */
+    protected function registerOutput($output)
+    {
+        RegisteredShortcodes::register($this->parentHash, $output);
     }
 
     /**
@@ -104,46 +174,6 @@ abstract class BaseShortcode implements GravShortcodeInterface
         }
         
         return substr(md5($shortcode->getShortcodeText()), -10);
-    }
-
-    /**
-     * Returns the given default value when given value is null
-     * 
-     * @param mixed $value
-     * @param mixed $default
-     * @return mixed
-     */
-    protected function defaultValue($value, $default)
-    {
-        return (null !== $value) ? $value : $default;
-    }
-    
-    /**
-     * Fixes the shortcode content
-     * 
-     * @param ShortcodeInterface $shortcode
-     * @return type
-     */
-    protected function fixContent(ShortcodeInterface $shortcode)
-    {
-        $content = preg_replace('/(^\<\/p\>\s)/is', '', $shortcode->getContent());
-
-        return preg_replace('/(\<p\>$)/is', '', $content);
-    }
-
-    /**
-     * Converts a string to boolean
-     * 
-     * @param string $value
-     * @return boolean
-     */
-    protected function stringToBoolean($value)
-    {
-        if ($value == 'true') {
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -194,5 +224,45 @@ abstract class BaseShortcode implements GravShortcodeInterface
         }
 
         return $value;
+    }
+
+    /**
+     * Returns the given default value when given value is null
+     * 
+     * @param mixed $value
+     * @param mixed $default
+     * @return mixed
+     */
+    protected function defaultValue($value, $default)
+    {
+        return (null !== $value) ? $value : $default;
+    }
+    
+    /**
+     * Fixes the shortcode content
+     * 
+     * @param ShortcodeInterface $shortcode
+     * @return type
+     */
+    protected function fixContent(ShortcodeInterface $shortcode)
+    {
+        $content = preg_replace('/(^\<\/p\>\s)/is', '', $shortcode->getContent());
+
+        return trim(preg_replace('/(\<p\>$)/is', '', $content));
+    }
+
+    /**
+     * Converts a string to boolean
+     * 
+     * @param string $value
+     * @return boolean
+     */
+    protected function stringToBoolean($value)
+    {
+        if ($value == 'true') {
+            return true;
+        }
+
+        return false;
     }
 }

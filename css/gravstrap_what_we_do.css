@@ -1,0 +1,11 @@
+.what-we-do .item-icon {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.what-we-do .item-text p {
+  text-align: justify;
+}
+.what-we-do .item-text img {
+  display: block;
+  margin: 0 auto;
+}

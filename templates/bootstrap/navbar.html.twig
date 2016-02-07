@@ -1,5 +1,5 @@
-<nav {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if centering == 'centered' %} container{% elseif centering == 'fluid' %} container-fluid{% endif %}{% if inverted|default(false) %} navbar-inverse{% endif %} {{ attributes['class'] }}">
-  <div class="container-fluid">
+<nav {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if inverse %} navbar-inverse{% endif %} {{ attributes['class'] }}"  {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+  <div class="{% if container %} container{% else %} container-fluid{% endif %}">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#{{ navbar.id }}" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">{% if brand_image is defined %} {{ page.media[brand_image].resize(20, 20) }} {% else %} {{ brand_text }} {% endif %}</a>
+      <a class="navbar-brand" href="#">{% if brand_image is not null %} {{ grav.page.media[brand_image].resize(20, 20) }} {% else %} {{ brand_text }} {% endif %}</a>
     </div>
 
     <div class="collapse navbar-collapse">

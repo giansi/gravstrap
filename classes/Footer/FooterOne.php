@@ -21,7 +21,7 @@ use Gravstrap\Base\BaseSectionShortcode;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
- * Class FooterOne handles a footer basic with license component
+ * Class FooterOne handles a basic footer module
  *
  * @author Giansimon Diblas
  */
@@ -51,7 +51,7 @@ class FooterOne extends BaseSectionShortcode
      */
     protected function template()
     {
-        return 'modules/footer_one.html.twig';
+        return 'modules/footer/footer_one.html.twig';
     }
 
     /**

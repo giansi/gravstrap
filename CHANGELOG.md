@@ -1,3 +1,9 @@
+# v1.0.0-beta
+## 02/07/2016
+
+1. [](#new)
+    * Redesigned plugin to use shortcodes. This release is not compatible with previous 0.9.x version.
+
 # v0.9.7
 ## 12/14/2015
 

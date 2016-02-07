@@ -19,7 +19,7 @@ namespace Gravstrap\Footer;
 
 
 /**
- * Class FooterTwo handles a basic footer with license component
+ * Class FooterTwo handles a basic footer module with license
  *
  * @author Giansimon Diblas
  */
@@ -38,6 +38,6 @@ class FooterTwo extends FooterOne
      */
     protected function template()
     {
-        return 'modules/footer_two.html.twig';
+        return 'modules/footer/footer_two.html.twig';
     }
 }

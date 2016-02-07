@@ -17,7 +17,7 @@
 
 namespace Gravstrap\Basic;
 
-use Gravstrap\Base\BaseChildShortcode;
+use Gravstrap\Base\BaseShortcode;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
@@ -25,7 +25,7 @@ use Thunder\Shortcode\Shortcode\ShortcodeInterface;
  *
  * @author Giansimon Diblas
  */
-class Section extends BaseChildShortcode
+class Section extends BaseShortcode
 {
     /**
      * {@inheritdoc}
@@ -53,6 +53,8 @@ class Section extends BaseChildShortcode
             'name' => $name,
             'content' => $this->fixContent($shortcode),
         ]);
+        
+        //return array($name => $output);
         $this->registerOutput(array($name => $output));
     }
 }

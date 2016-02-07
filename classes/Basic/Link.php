@@ -17,7 +17,7 @@
 
 namespace Gravstrap\Basic;
 
-use Gravstrap\Base\BaseHybridShortcode;
+use Gravstrap\Base\BaseShortcode;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
@@ -25,7 +25,7 @@ use Thunder\Shortcode\Shortcode\ShortcodeInterface;
  *
  * @author Giansimon Diblas
  */
-class Link extends BaseHybridShortcode
+class Link extends BaseShortcode
 {
     /**
      * {@inheritdoc}

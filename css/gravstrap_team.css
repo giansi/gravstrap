@@ -1,0 +1,14 @@
+.team .item-image {
+  padding: 1.5rem 0;
+}
+.team .item-image img {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.team .item-text {
+  min-height: 15rem;
+}
+.team .item-text p {
+  text-align: justify;
+}
