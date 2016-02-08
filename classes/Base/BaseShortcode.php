@@ -105,6 +105,14 @@ abstract class BaseShortcode implements GravShortcodeInterface
         }
         
         $this->grav['twig']->twig_vars[$id] = $output;
+        
+        $value = array(
+            $id => array(
+                "output" => $output,
+                'assets' => $this->assets(),
+            ),
+        );
+        $this->saveToCache($value);
 
         return '';
     }
@@ -138,6 +146,23 @@ abstract class BaseShortcode implements GravShortcodeInterface
         }
         
         $this->registerOutput($output);
+    }
+
+    /**
+     * Saves shortcodes to cache
+     * 
+     * @param array $value
+     */
+    protected function saveToCache(array $value)
+    {
+        $cache = $this->grav['cache'];
+        $cache_id = md5('gravstrap.shortcodes');
+        $shortcodes = $cache->fetch($cache_id);
+        if (false === $shortcodes) {
+            $shortcodes = array();
+        }
+        
+        $cache->save($cache_id, array_merge($shortcodes, $value));
     }
 
     /**

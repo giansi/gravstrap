@@ -58,7 +58,17 @@ class Sections extends BaseSectionShortcode
      */
     public function processShortcode(ShortcodeInterface $shortcode)
     {
+        $pageName = $this->grav['page']->name();
         $this->grav['twig']->twig_vars["sections"] = $this->sections($shortcode);
+        
+        $value = array(
+            $pageName."sections" => array(
+                "variableName" => "sections",
+                "output" => $this->sections($shortcode),
+                'assets' => array(),
+            ),
+        );
+        $this->saveToCache($value);
         
         return "";
     }

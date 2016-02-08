@@ -89,6 +89,17 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigSiteVariables()
     {
+        $cache = $this->grav['cache'];
+        $cache_id = md5('gravstrap.shortcodes');
+        $shortcodes = $cache->fetch($cache_id);
+        if (false !== $shortcodes) {
+            foreach($shortcodes as $id => $value) {
+                $variableName = (array_key_exists("variableName", $value)) ? $value["variableName"] : $id;
+                $this->grav['twig']->twig_vars[$variableName] = $value["output"];
+                $this->grav["assets"]->add($value["assets"]);
+            }
+        }
+                
         $page = $this->grav['page']->find('/common');
         if (null === $page) {
             return;
@@ -125,30 +136,6 @@ class GravstrapPlugin extends Plugin
             $this->registerShortcode($class);
         }
     }
-    
-    protected function initGravstrap($namespace, $classesFolder)
-    {
-        $this->autoload($namespace, array($classesFolder));
-        $files = $this->scanDir($classesFolder);
-        foreach($files as $file) {
-            $file = str_replace($classesFolder . '/', '', $file);
-            $file = str_replace('/', '\\', $file);
-            $class = $namespace . '\\' . str_replace('.php', '', $file);
-            
-            // Make sure to initialize only objects that implements the GravShortcodeInterface
-            if (!in_array('Gravstrap\\Base\\GravShortcodeInterface', class_implements($class))) {
-                continue;
-            }
-
-            // Excludes abstract classes and interfaces
-            $reflectionClass = new \ReflectionClass($class);
-            if(!$reflectionClass->IsInstantiable()) {
-                continue;
-            }
-            
-            $this->registerShortcode($class);
-        }
-    }
 
     /**
      * Registers the shortcode
@@ -159,9 +146,8 @@ class GravstrapPlugin extends Plugin
     {
         $class = new \ReflectionClass($className);
         $shortcodeObject = $class->newInstanceArgs(array($this->grav));
+        $this->grav["assets"]->add($shortcodeObject->assets());
         $this->handlers->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
-            $this->grav["assets"]->add($shortcodeObject->assets());
-
             return $shortcodeObject->processShortcode($shortcode);
         });
     }
