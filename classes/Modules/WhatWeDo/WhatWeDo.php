@@ -41,8 +41,10 @@ class WhatWeDo extends BaseShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_what_we_do.css',
+        return array(   
+            'css' => array(          
+                'plugin://gravstrap/css/gravstrap_what_we_do.css',
+            ),
         );
     }
 

@@ -41,8 +41,10 @@ class Clients extends BaseShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_clients.css',
+        return array(
+            'css' => array(                  
+                'plugin://gravstrap/css/gravstrap_clients.css',  
+            ),
         );
     }
 

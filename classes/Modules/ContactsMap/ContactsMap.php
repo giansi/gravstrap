@@ -40,8 +40,10 @@ class ContactsMap extends BaseSectionShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_where_we_are.css',
+        return array(   
+            'css' => array(          
+                'plugin://gravstrap/css/gravstrap_where_we_are.css',
+            ),
         );
     }
 

@@ -37,6 +37,9 @@ class GravstrapPlugin extends Plugin
      * @var ClassLoader
      */
     private $loader = null;
+    
+    /** @var  AssetContainer $assets */
+    protected $assets;
 
     /**
      * @return array
@@ -54,6 +57,8 @@ class GravstrapPlugin extends Plugin
      */
     public function onPluginsInitialized()
     {
+        
+        $this->assets = new AssetContainer();
         $this->enable([
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
@@ -68,6 +73,7 @@ class GravstrapPlugin extends Plugin
     public function onShortcodeHandlers(Event $e)
     {
         $this->handlers = $e['handlers'];
+        $this->assets = $e['assets'];
 
         $namespace = 'Gravstrap';
         $classesFolder = __DIR__ . '/classes';
@@ -146,7 +152,13 @@ class GravstrapPlugin extends Plugin
     {
         $class = new \ReflectionClass($className);
         $shortcodeObject = $class->newInstanceArgs(array($this->grav));
-        $this->grav["assets"]->add($shortcodeObject->assets());
+        
+        foreach($shortcodeObject->assets() as $type => $assets) {
+            foreach($assets as $asset) {
+                $this->assets->add($type, $asset);
+            }
+        }
+        
         $this->handlers->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
             return $shortcodeObject->processShortcode($shortcode);
         });

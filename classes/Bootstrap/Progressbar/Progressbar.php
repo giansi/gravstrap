@@ -41,7 +41,9 @@ class Progressbar extends BaseShortcode
     public function assets()
     {
         return array(
-            'plugin://gravstrap/css/gravstrap_progressbar.css',            
+            'css' => array(                  
+                'plugin://gravstrap/css/gravstrap_progressbar.css',   
+            ),      
         );
     }
 

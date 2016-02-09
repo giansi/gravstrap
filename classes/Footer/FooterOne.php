@@ -40,9 +40,11 @@ class FooterOne extends BaseSectionShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_footer.css',            
-            'plugin://gravstrap/css/gravstrap_footer_inline_navigation.css',
+        return array(
+            'css' => array(                
+                'plugin://gravstrap/css/gravstrap_footer.css',            
+                'plugin://gravstrap/css/gravstrap_footer_inline_navigation.css',
+            ),
         );
     }
 

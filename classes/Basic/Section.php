@@ -52,9 +52,9 @@ class Section extends BaseShortcode
         $output = $this->grav['twig']->processTemplate($this->template(), [
             'name' => $name,
             'content' => $this->fixContent($shortcode),
+            'attributes' => $this->parseAttributes($shortcode->getParameter('attributes'))
         ]);
         
-        //return array($name => $output);
         $this->registerOutput(array($name => $output));
     }
 }

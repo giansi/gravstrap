@@ -1,3 +1,13 @@
+# v1.0.0-beta.1
+## 02/09/2016
+
+1. [](#bugfix)
+    * assets are now added by type
+
+2. [](#new)
+    * added attributes parameter to sections
+
+
 # v1.0.0-beta
 ## 02/09/2016
 

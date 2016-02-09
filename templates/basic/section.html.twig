@@ -1,1 +1,7 @@
+{% if attributes|length > 0 %}
+<div {% include 'partials/_attributes.html.twig' with {'attributes': attributes } %}>
+    {{ content }}
+</div>
+{% else %}
 {{ content }}
+{% endif %}

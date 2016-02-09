@@ -41,8 +41,10 @@ class Portfolio extends BaseShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_portfolio.css',
+        return array(  
+            'css' => array(          
+                'plugin://gravstrap/css/gravstrap_portfolio.css',
+            ),
         );
     }
 

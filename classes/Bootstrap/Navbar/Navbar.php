@@ -41,10 +41,14 @@ class Navbar extends BaseShortcode
      */
     public function assets()
     {
-        return array(
-            'plugin://gravstrap/css/gravstrap_navbar.css',
-            'plugin://gravstrap/js/gravstrap_navbar.js',
-            'plugin://gravstrap/js/scroll.js',
+        return array(            
+            'css' => array(
+                'plugin://gravstrap/css/gravstrap_progressbar.css',    
+            ),
+            'js' => array(
+                'plugin://gravstrap/js/gravstrap_navbar.js',
+                'plugin://gravstrap/js/scroll.js',
+            ),         
         );
     }
 

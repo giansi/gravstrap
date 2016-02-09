@@ -40,8 +40,10 @@ class Contacts extends BaseSectionShortcode
      */
     public function assets()
     {
-        return array(            
-            'plugin://gravstrap/css/gravstrap_contacts.css',
+        return array(  
+            'css' => array(              
+                'plugin://gravstrap/css/gravstrap_contacts.css',
+            ),
         );
     }
 

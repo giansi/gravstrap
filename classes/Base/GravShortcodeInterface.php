@@ -47,10 +47,14 @@ interface GravShortcodeInterface
      * Add extra assets required by the shortcode.
      * 
      * An example could be the following one:
-     * return array(
-            'plugin://gravstrap/css/gravstrap_navbar.css',
-            'plugin://gravstrap/js/gravstrap_navbar.js',
-            'plugin://gravstrap/js/scroll.js',
+     * return array(            
+            'css' => array(
+                'plugin://gravstrap/css/gravstrap_progressbar.css',    
+            ),
+            'js' => array(
+                'plugin://gravstrap/js/gravstrap_navbar.js',
+                'plugin://gravstrap/js/scroll.js',
+            ),         
         );
      * 
      * @return array

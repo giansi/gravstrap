@@ -41,7 +41,9 @@ class Jumbotron extends BaseShortcode
     public function assets()
     {
         return array(
-            'plugin://gravstrap/css/gravstrap_jumbotron.css',            
+            'css' => array(        
+                'plugin://gravstrap/css/gravstrap_jumbotron.css',   
+            ),             
         );
     }
 
