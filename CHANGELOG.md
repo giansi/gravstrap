@@ -1,3 +1,13 @@
+# v1.0.0-beta.2
+## 02/10/2016
+
+1. [](#new)
+    * updated to work with new shortcode core plugin
+
+2. [](#bugfix)
+    * sections was not properly cached
+
+
 # v1.0.0-beta.1
 ## 02/09/2016
 

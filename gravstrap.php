@@ -57,8 +57,6 @@ class GravstrapPlugin extends Plugin
      */
     public function onPluginsInitialized()
     {
-        
-        $this->assets = new AssetContainer();
         $this->enable([
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
@@ -76,8 +74,9 @@ class GravstrapPlugin extends Plugin
         $this->assets = $e['assets'];
 
         $namespace = 'Gravstrap';
-        $classesFolder = __DIR__ . '/classes';
-        $this->init($namespace, $classesFolder);
+        $directory = __DIR__ . '/classes';
+        $this->autoload($namespace, array($directory));        
+        $this->registerShortcodes($namespace, $directory);
     }
 
     /**
@@ -95,12 +94,16 @@ class GravstrapPlugin extends Plugin
      */
     public function onTwigSiteVariables()
     {
+        $sectionsName = 'sections' . $this->grav['page']->folder();
         $cache = $this->grav['cache'];
         $cache_id = md5('gravstrap.shortcodes');
         $shortcodes = $cache->fetch($cache_id);
         if (false !== $shortcodes) {
             foreach($shortcodes as $id => $value) {
-                $variableName = (array_key_exists("variableName", $value)) ? $value["variableName"] : $id;
+                $variableName = $id;
+                if ($id == $sectionsName) {
+                    $variableName = 'sections';
+                }
                 $this->grav['twig']->twig_vars[$variableName] = $value["output"];
                 $this->grav["assets"]->add($value["assets"]);
             }
@@ -113,19 +116,12 @@ class GravstrapPlugin extends Plugin
             
         $page->content();
     }
-
-    /**
-     * Autoloadloads plugin library and initializes the shortcodes
-     * 
-     * @param type $namespace
-     * @param type $classesFolder
-     */
-    protected function init($namespace, $classesFolder)
+    
+    protected function registerShortcodes($namespace, $directory)
     {
-        $this->autoload($namespace, array($classesFolder));
-        $files = $this->scanDir($classesFolder);
+        $files = $this->scanDirRecursive($directory);
         foreach($files as $file) {
-            $file = str_replace($classesFolder . '/', '', $file);
+            $file = str_replace($directory . '/', '', $file);
             $file = str_replace('/', '\\', $file);
             $class = $namespace . '\\' . str_replace('.php', '', $file);
             // Make sure to initialize only objects that implements the GravShortcodeInterface
@@ -155,11 +151,11 @@ class GravstrapPlugin extends Plugin
         
         foreach($shortcodeObject->assets() as $type => $assets) {
             foreach($assets as $asset) {
-                $this->assets->add($type, $asset);
+                $this->grav['shortcode']->addAssets($type, $asset);
             }
         }
         
-        $this->handlers->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
+        $this->grav['shortcode']->getHandlers()->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
             return $shortcodeObject->processShortcode($shortcode);
         });
     }
@@ -171,14 +167,14 @@ class GravstrapPlugin extends Plugin
      * @param array $allowedExtensions
      * @return array
      */
-    protected function scanDir($dir, $allowedExtensions = array('php'))
+    protected function scanDirRecursive($dir, $allowedExtensions = array('php'))
     {
         $files = array();
         $dh  = opendir($dir);
         while (false !== ($filename = readdir($dh))) {
             $filePath = $dir . '/' . $filename;
             if ($filename != '.' && $filename != '..' && is_dir($filePath)) {
-                $files = array_merge($files, $this->scanDir($filePath));
+                $files = array_merge($files, $this->scanDirRecursive($filePath));
 
                 continue;
             }
