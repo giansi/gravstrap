@@ -32,7 +32,7 @@ class Section extends BaseShortcode
      */
     public function shortcode()
     {
-        return 'section';
+        return 'section-tmp';
     }
 
     /**

@@ -151,7 +151,7 @@ class GravstrapPlugin extends Plugin
         
         foreach($shortcodeObject->assets() as $type => $assets) {
             foreach($assets as $asset) {
-                $this->grav['shortcode']->addAssets($type, $asset);
+                $this->grav["assets"]->add($asset);
             }
         }
         
