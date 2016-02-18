@@ -1,0 +1,19 @@
+<footer class="footer footer-one">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 inline-navigation">
+                {% include 'partials/footer_navigation.html.twig' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {{ sections.credits }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                &copy; {{ "now"|date("Y") }} {{ sections.copyright }}
+            </div>
+        </div>
+    </div>
+</footer>

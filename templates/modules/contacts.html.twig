@@ -1,0 +1,23 @@
+{% embed 'modules/partials/base_module.html.twig' %}       
+    {% block module_content %}
+        {% set form_attributes = parse_attributes(form_attributes) %}
+        {% set info_attributes = parse_attributes(info_attributes) %}
+        <div class="row contacts-text {{ container_class }}">
+            {% if (form_position|default('right') == 'right') %}
+            {% block info %}
+            <div {% include 'partials/_attributes.html.twig' with {'attributes': info_attributes} %}>
+                {{ sections.info }}
+            </div>
+            {% endblock %}
+            {% block form %}
+            <div {% include 'partials/_attributes.html.twig' with {'attributes': form_attributes} %}>
+                {{ sections.form }}
+            </div>
+            {% endblock %}
+            {% else %}
+            {{ block('form') }}
+            {{ block('info') }}
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,3 +1,4 @@
-<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="alert alert-{{ type|default('danger') }} {{ attributes['class'] }}" role="alert" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+{% set attributes = parse_attributes(attributes) %}
+<div class="alert alert-{{ type|default('danger') }} {{ attributes['class'] }}" role="alert" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
     {{ content }}
 </div>

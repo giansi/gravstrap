@@ -1,7 +1,0 @@
-<div class="item-image {{ attributes.class }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
-    {% if (image|split('.')[1] == 'svg') %}
-    {{ grav.page.media.files[image] }}
-    {% else %}
-    {{ grav.page.media.images[image].html('', '', 'img-responsive') }}
-    {% endif %}
-</div>

@@ -3,6 +3,7 @@
         <input type="text" class="form-control" placeholder="{{ placeholder }}">
     </div>
     {% if button_visible %}
+    {% set attributes = parse_attributes(button_attributes) %}
     {% include 'basic/button.html.twig' %}
     {% endif %}
 </form>

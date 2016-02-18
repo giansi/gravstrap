@@ -1,0 +1,22 @@
+{% embed 'modules/partials/base_module.html.twig' %}       
+    {% block module_content %}
+        <div class="row">
+        {% for item in items %}
+            {% set values = item %}
+            {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+                {% set values = {
+                  'image': item.getParameter('image'),
+                  'attributes': parse_attributes(item.getParameter('attributes')),
+                  'content': item.content|trim
+                } %} 
+            {% endif %}
+            <div {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes} %}>    
+                {#<div class="item-icon">{{ dump(item.content) }}</div>#}
+                <div class="item-text">
+                    {{ values.content }}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
+{% endembed %}

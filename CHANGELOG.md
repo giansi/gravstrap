@@ -1,3 +1,12 @@
+# v1.0.0-RC
+## 02/18/2016
+
+1. [](#new)
+    * Refactored shortcodes according to shortcode core plugin
+    * All shortcodes are now prefixed by gravstrap token to avoid conflicts with other shortcodes [ BC ]
+    * Delegated shortcode registration to core ShortcodeManager
+    * Moved ParseAttributes function to new Twig extension
+
 # v1.0.0-beta.2
 ## 02/10/2016
 

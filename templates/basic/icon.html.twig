@@ -1,9 +1,10 @@
+{% set attributes = parse_attributes(icon_attributes) %}
 {% if icon is defined and icon != "" %}
 {% set type = icon_type|default('glyphicon') %}
 {% if type == 'glyphicon' %}
-<span class="glyphicon glyphicon-{{ icon }}"></span>
+<span class="glyphicon glyphicon-{{ icon }} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}></span>
 {% elseif type == 'fontawesome' %}
-<i class="fa fa-{{ icon }}"></i>
+<i class="fa fa-{{ icon }} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}></i>
 {% else %}
 <p>{{ 'icon_type ' ~ type ~ ' is not supported'}}</p>
 {% endif %}

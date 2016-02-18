@@ -1,6 +1,0 @@
-<a href="{{ url }}" class="list-group-item{% if type is defined %} list-group-item-{{ type }}{% endif %}{% if active %} active{% endif %}{% if disabled %} disabled{% endif %} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
-    {% if(badge is defined) %}
-    <span class="badge">{{ badge }}</span>
-    {% endif %}
-    {{ content }}
-</a>

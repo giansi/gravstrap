@@ -1,0 +1,22 @@
+{% embed 'modules/partials/base_module.html.twig' %}       
+    {% block module_content %}
+        <div class="row">
+        {% for item in items %}
+            {% set values = item %}
+            {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+                {% set values = {
+                  'image': item.getParameter('image'),
+                  'attributes': parse_attributes(item.getParameter('attributes')),
+                } %} 
+            {% endif %}
+            <div class="item-image {{ values.attributes.class }}" {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes, 'ignore': ['class']} %}>
+                {% if (values.image|split('.')[1] == 'svg') %}
+                {{ grav.page.media.files[values.image] }}
+                {% else %}
+                {{ grav.page.media.images[values.image].html('', '', 'img-responsive') }}
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
+{% endembed %}

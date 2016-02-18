@@ -1,3 +1,4 @@
+{% set attributes = parse_attributes(attributes) %}
 <ul class="dropdown-menu"{% include 'partials/_attributes.html.twig' %}>
   {% for item in items %}
     {% if item is iterable %}

@@ -1,4 +1,4 @@
-<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="carousel slide" data-ride="carousel">
+<div id="{{ id }}" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         {% for index in items|keys %}
         <li data-target="#{{ id }}"  data-slide-to="{{ index }}"{% if loop.first %} class="active"{% endif %}></li>
@@ -7,7 +7,17 @@
 
     <div class="carousel-inner" role="listbox">
         {% for item in items %}
-        {{ item }}
+        {% set values = item %}
+        {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+            {% set values = {
+              'image': item.getParameter('image'),
+              'caption': item.content|trim,
+            } %} 
+        {% endif %}
+        <div class="item{% if loop.first %} active{% endif %}">
+            {{ grav.page.media.images[values.image] }}
+            <div class="carousel-caption">{{ values.caption }}</div>
+        </div>
         {% endfor %}
     </div>
 

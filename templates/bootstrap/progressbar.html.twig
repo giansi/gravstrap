@@ -1,6 +1,8 @@
 {% if label is defined %}
 <div class="progress-label{% if fixed %} fixed{% endif %}{% if right %} right{% endif %}">{{ label }}</div>
 {% endif %}
+
+{% set attributes = parse_attributes(attributes) %}
 <div class="progress">
     <div class="progress-bar progress-bar-{{ type|default('default') }}{% if striped %} progress-bar-striped{% endif %}{% if animated %} active{% endif %} {{ attributes['class'] }}" role="progressbar" aria-valuenow="{{ value }}" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}" style="{% if show_label %}min-width: 2em; {% endif %}width: {{ value }}%" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>{% if show_label %}{{ value }}%{% endif %}
     <span class="sr-only">{{ value }}% Complete</span>

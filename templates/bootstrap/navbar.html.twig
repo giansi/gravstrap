@@ -1,4 +1,5 @@
-<nav {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if inverse %} navbar-inverse{% endif %} {{ attributes['class'] }}"  {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+{% set attributes = parse_attributes(attributes) %}
+<nav class="navbar navbar-default{% if fixed|default('none') != 'none' %} navbar-fixed-{{ fixed }}{% endif %}{% if inverse %} navbar-inverse{% endif %} {{ attributes['class'] }}"  {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
   <div class="{% if container %} container{% else %} container-fluid{% endif %}">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#{{ navbar.id }}" aria-expanded="false">

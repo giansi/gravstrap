@@ -1,0 +1,6 @@
+{% set attributes = parse_attributes(attributes) %}
+<section>
+    <div class="{% if fullwidth == false %}container {% endif %} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
+        {{ content }}
+    </div>
+</section>

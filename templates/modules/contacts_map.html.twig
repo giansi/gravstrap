@@ -1,0 +1,23 @@
+{% embed 'modules/partials/base_module.html.twig' %}       
+    {% block module_content %}
+        {% set map_attributes = parse_attributes(map_attributes) %}
+        {% set info_attributes = parse_attributes(info_attributes) %}
+        <div class="row contacts {{ container_class }}">
+            {% if (map_position|default('left') == 'left') %}
+            {% block map %}
+            <div {% include 'partials/_attributes.html.twig' with {'attributes': map_attributes} %}>
+                {{ sections.map }}
+            </div>
+            {% endblock %}
+            {% block info %}
+            <div {% include 'partials/_attributes.html.twig' with {'attributes': info_attributes} %}>
+                {{ sections.info }}
+            </div>
+            {% endblock %}
+            {% else %}
+            {{ block('info') }}
+            {{ block('map') }}
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endembed %}

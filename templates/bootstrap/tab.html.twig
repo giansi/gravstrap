@@ -1,11 +1,25 @@
 <ul class="nav nav-tabs" role="tablist">
-{% for name in items|keys %}
-    <li role="presentation"{% if loop.first %} class="active"{% endif %}><a href="#{{ name }}" aria-controls="{{ name }}" role="tab" data-toggle="tab">{{ name }}</a></li>
+{% for item in items %}        
+    {% set values = item %}
+    {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+        {% set values = {
+          'name': item.getParameter('name'), 
+        } %} 
+    {% endif %}
+    <li role="presentation"{% if loop.first %} class="active"{% endif %}><a href="#{{ values.name }}" aria-controls="{{ values.name }}" role="tab" data-toggle="tab">{{ values.name }}</a></li>
 {% endfor %}
 </ul>
 
 <div class="tab-content {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
-    {% for item in items %}
-        {{ item }}
+    {% for item in items %}      
+        {% set values = item %}
+        {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+            {% set values = {
+              'name': item.getParameter('name'),              
+              'attributes': parse_attributes(item.getParameter('attributes')),
+              'content': item.content|trim,
+            } %} 
+        {% endif %}
+        <div id="{{ values.name }}" role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %} {{ values.attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes, 'ignore': ['class']} %}>{{ values.content }}</div>
     {% endfor %}
 </div>

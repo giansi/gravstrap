@@ -1,0 +1,31 @@
+{% embed 'modules/partials/base_module.html.twig' %}
+    {% block module_content %}
+        <div class="row">      
+        {% for item in items %}
+            {% set values = item %}
+            {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+                {% set values = {
+                  'image': item.getParameter('image'),
+                  'content': item.content|trim,
+                  'attributes': parse_attributes(item.getParameter('attributes')),
+                } %} 
+            {% endif %}
+            
+            <div {% include 'partials/_attributes.html.twig' with { 'attributes': values.attributes } %}>
+                <div class="item-image">
+                    {{ grav.page.media.images[values.image].cropZoom(150, 150) }}
+                </div>
+                {% if content != "" %}
+                <div class="item-text">{{ values.content }}</div>
+                {% endif %}{#
+                <div class="item-social">
+                    {% for social in socials %}
+                        {{ social }}
+                    {% endfor %}
+                </div>#}
+            </div>
+            {#{{ item }}#}
+        {% endfor %}
+        </div>
+    {% endblock %}        
+{% endembed %}

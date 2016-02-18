@@ -1,4 +1,6 @@
-<section {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %}>
+{% set attributes = parse_attributes(attributes) %}
+{% set column_attributes = parse_attributes(column_attributes) %}
+<section>
     <div class="container {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
         {% block module_page_content %}
             {% if content != "" %}

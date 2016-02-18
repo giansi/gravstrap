@@ -1,5 +1,27 @@
-<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="row">
+<div class="row">
     {% for item in items %}
-        {{ item }}
+        {% set values = item %}
+        {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+            {% set values = {
+              'image': item.getParameter('image'),
+              'content': item.content|trim,
+              'class': item.getParameter('class'),
+              'url': item.getParameter('url'),
+            } %} 
+        {% endif %}
+        
+        <div class="{{ values.class|default('col-md-4') }}">
+            {% set linked = values.url is not null %}
+            {% set tag = linked ? 'a href="' ~ values.url ~ '"' : 'div' %}
+            {% set close_tag = linked ? 'a' : 'div' %}
+            <{{ tag }} class="thumbnail">
+            {{ grav.page.media.images[values.image] }}
+            {% if linked == false %}
+            <div class="caption">
+                {{ values.content }}
+            </div>
+            {% endif %}
+            </{{ close_tag }}>
+        </div>
     {% endfor %}
 </div>

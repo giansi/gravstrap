@@ -17,68 +17,51 @@
 
 namespace Grav\Plugin;
 
-use \Grav\Common\Plugin;
-use Composer\Autoload\ClassLoader;
-use RocketTheme\Toolbox\Event\Event;
-use Thunder\Shortcode\Shortcode\ShortcodeInterface;
+use Grav\Common\Plugin;
+use Gravstrap\Twig\GravstrapTwigExtension;
+use Grav\Common\Page\Page;
 
 class GravstrapPlugin extends Plugin
-{
-    /**
-     * HandlersCollection instance
-     * 
-     * @var HandlersCollection 
-     */
-    protected $handlers;
-
-    /**
-     * ClassLoader instance
-     *
-     * @var ClassLoader
-     */
-    private $loader = null;
-    
-    /** @var  AssetContainer $assets */
-    protected $assets;
-
+{    
     /**
      * @return array
      */
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0],
             'onShortcodeHandlers' => ['onShortcodeHandlers', 0],
+            'onTwigExtensions' => ['onTwigExtensions', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
         ];
     }
 
     /**
-     * Initialize configuration
+     * Initializes the shortcodes
      */
-    public function onPluginsInitialized()
+    public function onShortcodeHandlers()
     {
-        $this->enable([
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
-        ]);
+        require_once(__DIR__.'/classes/Base/GravstrapShortcode.php');
+        require_once(__DIR__.'/classes/Base/RegisteredShortcodes.php');
+        require_once(__DIR__.'/classes/Twig/GravstrapTwigExtension.php');
+        
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Basic');        
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Bootstrap');   
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Footer'); 
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Modules');
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Vendor');
     }
 
     /**
-     * Initializes the shortcodes
-     * 
-     * @param Event $e
+     * Adds Twig extension
      */
-    public function onShortcodeHandlers(Event $e)
+    public function onTwigExtensions()
     {
-        $this->handlers = $e['handlers'];
-        $this->assets = $e['assets'];
-
-        $namespace = 'Gravstrap';
-        $directory = __DIR__ . '/classes';
-        $this->autoload($namespace, array($directory));        
-        $this->registerShortcodes($namespace, $directory);
+        require_once(__DIR__ . '/classes/Twig/GravstrapTwigExtension.php');
+        
+        $this->grav['twig']->twig->addExtension(new GravstrapTwigExtension());
     }
-
+    
     /**
      * Add current directory to twig lookup paths.
      */
@@ -86,122 +69,62 @@ class GravstrapPlugin extends Plugin
     {
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates/modules';
-        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates/components';
     }
 
     /**
-     * Configures Gravstrap
+     * Assigns not rendered shortcodes to twig variables; adds modular pages assets; parses common page
      */
     public function onTwigSiteVariables()
-    {
-        $sectionsName = 'sections' . $this->grav['page']->folder();
-        $cache = $this->grav['cache'];
-        $cache_id = md5('gravstrap.shortcodes');
-        $shortcodes = $cache->fetch($cache_id);
-        if (false !== $shortcodes) {
-            foreach($shortcodes as $id => $value) {
-                $variableName = $id;
-                if ($id == $sectionsName) {
-                    $variableName = 'sections';
-                }
-                $this->grav['twig']->twig_vars[$variableName] = $value["output"];
-                $this->grav["assets"]->add($value["assets"]);
-            }
-        }
-                
-        $page = $this->grav['page']->find('/common');
+    {      
+        $page = $this->grav['page'];
+        $this->pageShortcodesToTwigVariable($page);
+        $this->manageModularPage($page);
+        
+        $page = $page->find('/common');
         if (null === $page) {
             return;
         }
             
         $page->content();
+        $this->pageShortcodesToTwigVariable($page);
+        $this->addAssets($page);
     }
     
-    protected function registerShortcodes($namespace, $directory)
+    private function pageShortcodesToTwigVariable(Page $page)
     {
-        $files = $this->scanDirRecursive($directory);
-        foreach($files as $file) {
-            $file = str_replace($directory . '/', '', $file);
-            $file = str_replace('/', '\\', $file);
-            $class = $namespace . '\\' . str_replace('.php', '', $file);
-            // Make sure to initialize only objects that implements the GravShortcodeInterface
-            if (!in_array('Gravstrap\\Base\\GravShortcodeInterface', class_implements($class))) {
-                continue;
-            }
-            
-            // Excludes abstract classes and interfaces
-            $reflectionClass = new \ReflectionClass($class);
-            if(!$reflectionClass->IsInstantiable()) {
-                continue;
-            }
-            
-            $this->registerShortcode($class);
-        }
-    }
-
-    /**
-     * Registers the shortcode
-     * 
-     * @param string $className
-     */
-    protected function registerShortcode($className)
-    {
-        $class = new \ReflectionClass($className);
-        $shortcodeObject = $class->newInstanceArgs(array($this->grav));
-        
-        foreach($shortcodeObject->assets() as $type => $assets) {
-            foreach($assets as $asset) {
-                $this->grav['shortcode']->addAssets($type, $asset);
-            }
+        $contentMeta = $page->getcontentMeta();
+        if (null === $contentMeta || ! array_key_exists("shortcode", $contentMeta) || null === $shortcodes = $contentMeta["shortcode"]) {
+            return;
         }
         
-        $this->grav['shortcode']->getHandlers()->add($shortcodeObject->shortcode(), function(ShortcodeInterface $shortcode) use($shortcodeObject) {
-            return $shortcodeObject->processShortcode($shortcode);
-        });
-    }
-
-    /**
-     * Scans a directory recursively and returns files found
-     * 
-     * @param string $dir
-     * @param array $allowedExtensions
-     * @return array
-     */
-    protected function scanDirRecursive($dir, $allowedExtensions = array('php'))
-    {
-        $files = array();
-        $dh  = opendir($dir);
-        while (false !== ($filename = readdir($dh))) {
-            $filePath = $dir . '/' . $filename;
-            if ($filename != '.' && $filename != '..' && is_dir($filePath)) {
-                $files = array_merge($files, $this->scanDirRecursive($filePath));
-
-                continue;
+        foreach($shortcodes as $typedShortcodes) {
+            foreach($typedShortcodes as $name => $content) {
+                $this->grav['twig']->twig_vars[$name] = $content;
             }
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if ( ! in_array($ext, $allowedExtensions)) {
-                continue;
-            }
-
-            $files[] = $filePath;
         }
-
-        return $files;
     }
-
-    /**
-     * Autoloads a namespace, parsing the given folders
-     *
-     * @param string $namespace
-     * @param array $folders
-     */
-    protected function autoload($namespace, array $folders)
+    
+    private function manageModularPage(Page $page)
     {
-        if ($this->loader === null) {
-            $this->loader = new ClassLoader();
+        $children = $page->collection();
+        foreach ($children as $child) {
+           if (!$child->modular()) {
+               return;
+           }
+           
+           $this->addAssets($child);
         }
-
-        $this->loader->setPsr4($namespace . '\\', $folders);
-        $this->loader->register(true);
+    }
+    
+    private function addAssets(Page $page)
+    {
+        // get the meta and check for assets
+        $meta = $page->getContentMeta();
+        if (!isset($meta['shortcode-assets'])) {
+            return;
+        }
+        
+        $assets = (array) $meta['shortcode-assets'];
+        $this->grav["assets"]->add($assets);
     }
 }

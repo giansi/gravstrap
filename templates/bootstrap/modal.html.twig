@@ -1,4 +1,6 @@
-<div class="modal fade" {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} tabindex="-1" role="dialog" {% include 'partials/_attributes.html.twig' %}>
+{% set attributes = parse_attributes(attributes) %}
+{% set close_button_attributes = parse_attributes(close_button_attributes) %}
+<div id="{{ id }}" class="modal fade" tabindex="-1" role="dialog" {% include 'partials/_attributes.html.twig' %}>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +12,7 @@
       </div>
       <div class="modal-footer">
           {% for button in buttons %}
-          {{ button }}
+          {{ button.content }}
           {% endfor %}
       </div>
     </div>

@@ -1,5 +1,22 @@
-<div {% include 'partials/_attribute.html.twig' with {'attribute_name': 'id', 'attribute_value': id} %} class="list-group">
+<div class="list-group">
     {% for item in items %}
-        {{ item }}
+        {% set values = item %}
+        {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+            {% set values = {
+              'url': item.getParameter('url'),
+              'type': item.getParameter('type'),
+              'disabled': item.getParameter('disabled'),
+              'badge': item.getParameter('badge'),
+              'active': item.getParameter('active'),
+              'attributes': parse_attributes(item.getParameter('attributes')),
+              'content': item.content|trim,
+            } %} 
+        {% endif %}
+        <a href="{{ values.url }}" class="list-group-item{% if values.type is defined %} list-group-item-{{ values.type }}{% endif %}{% if values.active %} active{% endif %}{% if values.disabled %} disabled{% endif %} {{ values.attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes, 'ignore': ['class']} %}>
+            {% if(values.badge is defined) %}
+            <span class="badge">{{ values.badge }}</span>
+            {% endif %}
+            {{ values.content }}
+        </a>
     {% endfor %}
 </div>
