@@ -1,6 +1,6 @@
 name: Gravstrap
-version: 1.0.0-beta.2
-description: "Gravstrap is a Grav plugin that gives you the ability to use Bootstrap elements as Shortcodes."
+version: 1.0.0-RC
+description: "Gravstrap is a Grav plugin that provides Bootstrap components as shortcodes. It has 30+ basic, modules and bootstrap shortcodes"
 icon: share-alt
 author:
   name: Giansimon Diblas

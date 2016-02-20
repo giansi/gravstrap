@@ -1,5 +1,5 @@
 # Gravstrap Plugin
 
-`Gravstrap` is a [Grav](http://github.com/getgrav/grav) plugin that gives you the ability to use Bootstrap elements in the Grav way. Each Bootstrap element can be defined both at site level and / or at page level. When you define the same element, the page overrides the site element.
+`Gravstrap` is a [Grav](http://github.com/getgrav/grav) plugin that provides Bootstrap components as shortcodes. A shortcode is defined by a simple structure and it is added to a Grav page to render a full component like a simple button, or a more complex one like a carousel or a navbar, till a full complex module, like a portfolio.
 
-The full ducumentation is available at the [developer's website](http://diblas.net/plugins/use-bootstrap-elements-in-the-grav-cms-way)
+The full ducumentation is available at the [developer's website](http://diblas.net/plugins/use-bootstrap-components-as-shortcodes-in-grav-cms)
