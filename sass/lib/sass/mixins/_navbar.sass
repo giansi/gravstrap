@@ -11,7 +11,7 @@
     +transition($narbar-transition)
     padding: $navbar-padding
 
-    @media screen and (max-width: 550px)
+    @media screen and (max-width: 768px)
         padding: 0.5rem
 
         .navbar-collapse
@@ -56,7 +56,7 @@
         > .active > a, > .active > a:hover
             background-color: $navbar-bg-color
 
-    .navbar-nav > li > .dropdown-menu, .dropdown-menu
+    .navbar-nav > li > .dropdown-menu, .dropdown-menu,
         display: block
         margin: 0
         padding: 0
@@ -71,10 +71,18 @@
         +transition(all, 100ms, cubic-bezier(0.950, 0.050, 0.795, 0.035))
         +transition-timing-function(cubic-bezier(0.950, 0.050, 0.795, 0.035))
 
+        @media screen and (max-width: 768px)
+            position: inherit !important
+            display: none !important
+
+            a
+                color: #fff !important
+
     .navbar-nav > li.open > .dropdown-menu, .open .dropdown-menu
         +transform(scale(1))
         +filter(none)
         opacity: 1
+        display: block !important
 
     %triangle
         border-left: 11px solid rgba(0, 0, 0, 0)
@@ -84,6 +92,9 @@
         position: absolute
         left: 100%
         margin-left: -90%
+
+        @media screen and (max-width: 768px)
+            display: none !important
 
     .navbar-right %triangle
         margin-left: -30%
@@ -118,6 +129,21 @@
     .dropdown.open > a, .dropdown.open > a:hover, .dropdown.open > a:focus, .dropdown.open > a:active
         color: $navbar-accent-color
 
+    .navbar-toggle
+        background-color: #333
+
+    
+
+    .highdensity-menu
+
+        @media screen and (max-width: 1170px)
+            max-width: 400px
+            padding-top: 2px
+
+            li
+                a
+                    padding: 2px 6px
+
 .navbar
     +navbar()
 
@@ -125,6 +151,10 @@
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus
     background-color: transparent
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover
+    background-color: #333
 
 .navbar.scrolled
     +navbar(#fff, #6e6e6e, #6e6e6e, #010101, #6e6e6e, #010101, #010101)

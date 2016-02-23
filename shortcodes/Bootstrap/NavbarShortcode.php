@@ -65,6 +65,8 @@ class NavbarShortcode extends GravstrapShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
+            'id' => $shortcode->getParameter('id'),
+            'name' => $shortcode->getParameter('name'),
             'fixed' => $shortcode->getParameter('fixed'),
             'container' => $this->stringToBoolean($shortcode->getParameter('container')),
             'brand_text' => $shortcode->getParameter('brand_text'),

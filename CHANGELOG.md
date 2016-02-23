@@ -1,4 +1,13 @@
-# v1.0.0-RC
+# v1.0.0-rc.1
+## 02/23/2016
+1. [](#bugfix)
+    * Added id property to navbar required to open the "hamburger" menu
+    * Fixed navbar dropdown menu rendering for small devices
+
+2.[](#new)
+    * Added optional highdensity-menu class useful to handle the automatic menu for webs ites that have several pages
+
+# v1.0.0-rc
 ## 02/18/2016
 
 1. [](#new)
