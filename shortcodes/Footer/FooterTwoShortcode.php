@@ -17,13 +17,14 @@
 
 namespace Grav\Plugin\Shortcodes;
 
+use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
  * Class FooterTwo handles a basic footer module with license
  *
  * @author Giansimon Diblas
  */
-class FooterTwoShortcode extends FooterOneShortcode
+class FooterTwoShortcode extends GravstrapShortcode
 {
     /**
      * {@inheritdoc}
@@ -39,5 +40,15 @@ class FooterTwoShortcode extends FooterOneShortcode
     protected function template()
     {
         return 'footer/footer_two.html.twig';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function renderOutput(ShortcodeInterface $shortcode)
+    {
+        return $this->grav['twig']->processTemplate($this->template(), [ 
+            'sections' => $this->sections($shortcode),
+        ]);
     }
 }
