@@ -1,3 +1,8 @@
+# v1.0.0-rc.2
+## 02/24/2016
+1. [](#bugfix)
+    * extended FooterTwoShortcode from GravstrapShortcode instead of FooterOneShortcode because this could cause an error
+
 # v1.0.0-rc.1
 ## 02/23/2016
 1. [](#bugfix)
