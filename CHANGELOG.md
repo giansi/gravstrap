@@ -1,3 +1,12 @@
+# v1.0.0-rc.3
+## 02/27/2016
+1. [](#bugfix)
+    * fixed attributes broken on link shortcode
+
+2.[](#new)
+    * Added new gravstrap-list shortcode to handle a generic list
+    * Added new gravstrap-item shortcode to handle a generic html item
+
 # v1.0.0-rc.2
 ## 02/24/2016
 1. [](#bugfix)

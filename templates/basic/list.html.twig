@@ -1,0 +1,6 @@
+{% set attributes = parse_attributes(list_attributes) %}
+<{{ tag }} {% include 'partials/_attributes.html.twig' %}>
+    {% for item in items %}
+    {{ item }}
+    {% endfor %}
+</{{ tag }}>

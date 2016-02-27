@@ -1,0 +1,8 @@
+{% set attributes = parse_attributes(item_attributes) %}
+{% if tag is not null %}
+<{{ tag }} {% include 'partials/_attributes.html.twig' %}>
+{% endif %}
+{{ content }}
+{% if tag is not null %}
+</{{ tag }}>
+{% endif %}

@@ -20,18 +20,18 @@ namespace Grav\Plugin\Shortcodes;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
- * Class LinkShortcode handles a link element
+ * Class ListItemShortcode handles a list item
  *
  * @author Giansimon Diblas
  */
-class LinkShortcode extends GravstrapShortcode
+class ListItemShortcode extends GravstrapShortcode
 {
     /**
      * {@inheritdoc}
      */
     public function shortcodeName()
     {
-        return 'gravstrap-link';
+        return 'gravstrap-list-item';
     }
 
     /**
@@ -39,7 +39,7 @@ class LinkShortcode extends GravstrapShortcode
      */
     protected function template()
     {
-        return 'basic/link.html.twig';
+        return 'basic/list-item.html.twig';
     }
     
     /**
@@ -47,15 +47,12 @@ class LinkShortcode extends GravstrapShortcode
      */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
-        return $this->grav['twig']->processTemplate($this->template(), [
+        $output = $this->grav['twig']->processTemplate($this->template(), [
             'name' => $shortcode->getParameter('name'),
-            'url' => $shortcode->getParameter('url'),
-            'menu' => $shortcode->getParameter('menu'),
-            'icon_type' => $this->findParameterInCascade($shortcode, 'icon_type'),
-            'icon' => $shortcode->getParameter('icon'),
-            'icon_container' => $shortcode->getParameter('icon_container'),
-            'stacked' => $this->stringToBoolean($shortcode->getParameter('stacked')),
-            'link_attributes' => $shortcode->getParameter('attributes'),
+            'item_attributes' => $shortcode->getParameter('attributes'),
+            'content' => $shortcode->getContent(),
         ]);
+                    
+        return $output;
     }
 }
