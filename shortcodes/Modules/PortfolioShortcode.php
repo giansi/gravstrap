@@ -54,6 +54,16 @@ class PortfolioShortcode extends GravstrapShortcode
     {
         return 'modules/portfolio.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-portfolio',
+        );
+    }
     
     /**
      * {@inheritdoc}

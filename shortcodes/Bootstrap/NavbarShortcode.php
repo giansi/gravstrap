@@ -54,6 +54,16 @@ class NavbarShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-navbar',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function template()
     {
         return 'bootstrap/navbar.html.twig';

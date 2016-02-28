@@ -41,6 +41,16 @@ class ButtonShortcode extends GravstrapShortcode
     {
         return 'basic/button.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-button',
+        );
+    }
     
     /**
      * {@inheritdoc}

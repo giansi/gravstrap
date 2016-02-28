@@ -41,6 +41,16 @@ class WellShortcode extends GravstrapShortcode
     {
         return 'bootstrap/well.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-well',
+        );
+    }
     
     /**
      * {@inheritdoc}

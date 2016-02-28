@@ -41,6 +41,16 @@ class IconShortcode extends GravstrapShortcode
     {
         return 'basic/icon.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-icon',
+        );
+    }
     
     /**
      * {@inheritdoc}

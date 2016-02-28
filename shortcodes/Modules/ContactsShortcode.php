@@ -57,6 +57,16 @@ class ContactsShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-contacts',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [ 

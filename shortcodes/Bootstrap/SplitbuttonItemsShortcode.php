@@ -46,6 +46,16 @@ class SplitbuttonItemsShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-splitbutton-item',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [

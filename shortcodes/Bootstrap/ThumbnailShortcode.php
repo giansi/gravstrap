@@ -52,6 +52,21 @@ class ThumbnailShortcode extends GravstrapShortcode
     {
         return 'bootstrap/thumbnail.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-thumbnail' => array(
+                'g-thumbnail'
+            ),
+            'gravstrap-thumbnail-item' => array(
+                'g-thumbnail-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

@@ -41,6 +41,16 @@ class PanelShortcode extends GravstrapShortcode
     {
         return 'bootstrap/panel.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-panel',
+        );
+    }
     
     /**
      * {@inheritdoc}

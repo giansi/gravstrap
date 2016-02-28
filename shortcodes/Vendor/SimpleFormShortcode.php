@@ -45,6 +45,16 @@ class SimpleFormShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-simple-form',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [

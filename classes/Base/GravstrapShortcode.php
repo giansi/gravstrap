@@ -79,6 +79,46 @@ abstract class GravstrapShortcode extends Shortcode
         foreach($this->childrenShortcodes() as $childShortcode) {
             $this->registerChildShortcode($childShortcode);
         }
+        
+        foreach($this->aliases() as $aliasShortcode => $alias) {
+            if (!is_array($alias)) {
+                $this->shortcode->getHandlers()->addAlias($alias, $this->shortcodeName());
+                
+                continue;
+            }
+            
+            foreach($alias as  $aliasName) {
+                $this->shortcode->getHandlers()->addAlias($aliasName, $aliasShortcode);
+            }            
+        }
+    }
+    
+    /**
+     * Add aliases to shortcode.
+     * 
+     * Aliases can be defined as follows:
+     * 
+     * array(
+            'g-jumbotron',
+        );
+     * 
+     * or
+     * 
+     * array(
+            'gravstrap-accordion' => array(
+                'g-accordion'
+            ),
+            'gravstrap-accordion-item' => array(
+                'g-accordion-item'
+            ),
+        );
+     * 
+     * 
+     * @return array
+     */
+    protected function aliases()
+    {
+        return array();
     }
     
     /**

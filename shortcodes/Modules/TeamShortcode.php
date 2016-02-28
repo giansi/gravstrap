@@ -64,6 +64,21 @@ class TeamShortcode extends GravstrapShortcode
     {
         return 'modules/team.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-team' => array(
+                'g-team'
+            ),
+            'gravstrap-team-item' => array(
+                'g-team-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

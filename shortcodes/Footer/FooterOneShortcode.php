@@ -58,6 +58,16 @@ class FooterOneShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-footer-one',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [ 

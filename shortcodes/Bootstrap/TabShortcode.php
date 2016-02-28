@@ -51,6 +51,21 @@ class TabShortcode extends GravstrapShortcode
     {
         return 'bootstrap/tab.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-tab' => array(
+                'g-tab'
+            ),
+            'gravstrap-tab-item' => array(
+                'g-tab-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

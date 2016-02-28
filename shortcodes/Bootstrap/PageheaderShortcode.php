@@ -42,6 +42,16 @@ class PageheaderShortcode extends GravstrapShortcode
     {
         return 'bootstrap/pageheader.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-pageheader',
+        );
+    }
     
     /**
      * {@inheritdoc}

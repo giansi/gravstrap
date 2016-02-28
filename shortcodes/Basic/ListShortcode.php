@@ -17,7 +17,6 @@
 
 namespace Grav\Plugin\Shortcodes;
 
-use Gravstrap\Base\RegisteredShortcodes;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 /**
@@ -42,6 +41,26 @@ class ListShortcode extends GravstrapShortcode
     {
         return 'basic/list.html.twig';
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    protected function childrenShortcodes()
+    {
+        return array(
+            'gravstrap-list-item'
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-list',
+        );
+    }
 
     /**
      * {@inheritdoc}
@@ -49,10 +68,9 @@ class ListShortcode extends GravstrapShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         $tag = null !== $shortcode->getParameter('tag') ? $shortcode->getParameter('tag') : 'ul';
-        $items = RegisteredShortcodes::get($this->shortcode->getId($shortcode));
         $output = $this->grav['twig']->processTemplate($this->template(), [
             'list_attributes' => $shortcode->getParameter('attributes'),
-            'items' => $items,
+            'items' => $this->shortcode->getStates($this->shortcode->getId($shortcode)),
             'tag' => $tag,
         ]);
         

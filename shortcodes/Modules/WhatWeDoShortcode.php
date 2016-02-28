@@ -64,6 +64,21 @@ class WhatWeDoShortcode extends GravstrapShortcode
     {
         return 'modules/what_we_do.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-what-we-do' => array(
+                'g-what-we-do'
+            ),
+            'gravstrap-what-we-do-item' => array(
+                'g-what-we-do-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

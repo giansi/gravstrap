@@ -41,6 +41,16 @@ class LinkShortcode extends GravstrapShortcode
     {
         return 'basic/link.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-link',
+        );
+    }
     
     /**
      * {@inheritdoc}

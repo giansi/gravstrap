@@ -1,6 +1,13 @@
 {% set attributes = parse_attributes(list_attributes) %}
 <{{ tag }} {% include 'partials/_attributes.html.twig' %}>
     {% for item in items %}
-    {{ item }}
+    {% set values = item %}
+    {% if(instanceof(values, '\\Thunder\\Shortcode\\Shortcode\\ProcessedShortcode')) %}
+        {% set values = {
+          'attributes': parse_attributes(item.getParameter('attributes')),
+          'content': item.content|trim,
+        } %} 
+    {% endif %}
+    <li {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes} %}>{{ values.content }}</li>
     {% endfor %}
 </{{ tag }}>

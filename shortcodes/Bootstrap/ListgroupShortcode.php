@@ -56,6 +56,21 @@ class ListgroupShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-listgroup' => array(
+                'g-listgroup'
+            ),
+            'gravstrap-listgroup-item' => array(
+                'g-listgroup-item'
+            ),
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->twig->processTemplate($this->template(), [

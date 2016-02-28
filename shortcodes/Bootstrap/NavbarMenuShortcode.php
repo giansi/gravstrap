@@ -47,6 +47,16 @@ class NavbarMenuShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-navbar-menu',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         $items = RegisteredShortcodes::get($this->shortcode->getId($shortcode));

@@ -51,6 +51,21 @@ class AccordionShortcode extends GravstrapShortcode
             'gravstrap-accordion-item'
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-accordion' => array(
+                'g-accordion'
+            ),
+            'gravstrap-accordion-item' => array(
+                'g-accordion-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

@@ -51,6 +51,21 @@ class ModalShortcode extends GravstrapShortcode
     {
         return 'bootstrap/modal.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-modal' => array(
+                'g-modal'
+            ),
+            'gravstrap-modal-buttons' => array(
+                'g-modal-buttons'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

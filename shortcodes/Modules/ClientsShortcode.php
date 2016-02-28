@@ -64,6 +64,21 @@ class ClientsShortcode extends GravstrapShortcode
     {
         return 'modules/clients.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-clients' => array(
+                'g-clients'
+            ),
+            'gravstrap-clients-item' => array(
+                'g-clients-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

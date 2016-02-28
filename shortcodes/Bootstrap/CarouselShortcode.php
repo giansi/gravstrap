@@ -42,6 +42,21 @@ class CarouselShortcode extends GravstrapShortcode
     {
         return 'bootstrap/carousel.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'gravstrap-carousel' => array(
+                'g-carousel'
+            ),
+            'gravstrap-carousel-item' => array(
+                'g-carousel-item'
+            ),
+        );
+    }
     
     /**
      * {@inheritdoc}

@@ -41,6 +41,16 @@ class ItemShortcode extends GravstrapShortcode
     {
         return 'basic/item.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-item',
+        );
+    }
     
     /**
      * {@inheritdoc}

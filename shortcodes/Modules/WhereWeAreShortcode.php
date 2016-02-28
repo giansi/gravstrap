@@ -54,6 +54,16 @@ class WhereWeAreShortcode extends GravstrapShortcode
     {
         return 'modules/where_we_are.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-where-we-are',
+        );
+    }
     
     /**
      * {@inheritdoc}

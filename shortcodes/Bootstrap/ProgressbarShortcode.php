@@ -53,6 +53,16 @@ class ProgressbarShortcode extends GravstrapShortcode
     {
         return 'bootstrap/progressbar.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-progressbar',
+        );
+    }
     
     /**
      * {@inheritdoc}

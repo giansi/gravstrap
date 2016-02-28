@@ -46,6 +46,16 @@ class JumbotronShortcode extends GravstrapShortcode
     /**
      * {@inheritdoc}
      */
+    protected function aliases()
+    {
+        return array(
+            'g-jumbotron',
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function assets()
     {
         return array(

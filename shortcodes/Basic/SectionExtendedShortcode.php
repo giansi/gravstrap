@@ -41,6 +41,16 @@ class SectionExtendedShortcode extends GravstrapShortcode
     protected function template()
     {
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-section-extended',
+        );
+    }
     
     /**
      * {@inheritdoc}

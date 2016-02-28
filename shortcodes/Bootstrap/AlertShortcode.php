@@ -42,6 +42,16 @@ class AlertShortcode extends GravstrapShortcode
     {
         return 'bootstrap/alert.html.twig';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function aliases()
+    {
+        return array(
+            'g-alert',
+        );
+    }
     
     /**
      * {@inheritdoc}
