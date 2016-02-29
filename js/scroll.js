@@ -3,12 +3,10 @@ $(document).ready(function(){
         e.preventDefault();
 
         var target = this.hash;
-        $target = $(target);console.log(target);
-
+        $target = $(target);
+        
         $('html, body').stop().animate({
             'scrollTop': $target.offset().top - $('nav').height()
-        }, 800, 'swing', function () {
-            window.location.hash = target;
-        });
+        }, 800, 'swing');
     });
 });
