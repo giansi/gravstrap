@@ -1,3 +1,12 @@
+# v1.0.0
+## 03/01/2016
+1.[](#improved)    
+    * Improved ListShortcode and removed ListItemShortcode
+    * Added g- alias to all the shortcodes
+
+2. [](#bugfix)
+    * Fixed navbar cover heading in one page web sites
+
 # v1.0.0-rc.3
 ## 02/27/2016
 1. [](#bugfix)
