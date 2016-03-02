@@ -1,2 +1,2 @@
 {% set button_attributes = parse_attributes(button_attributes) %}
-<button type="button" class="btn btn-{{ button_type|default('default') }} {{ button_attributes.class }}"{% include 'partials/_attributes.html.twig' with {'attributes': button_attributes, 'ignore': ['class']} %}>{{ button_label }}</button>
+<button type="button" link="{{ button_url }}" class="btn btn-{{ button_type|default('default') }} {{ button_attributes.class }}"{% include 'partials/_attributes.html.twig' with {'attributes': button_attributes, 'ignore': ['class']} %}>{{ button_label }}</button>

@@ -62,6 +62,7 @@ class ButtonShortcode extends GravstrapShortcode
             'button_label' => $shortcode->getParameter('button_label'),
             'button_type' => $shortcode->getParameter('button_type'),
             'button_attributes' => $shortcode->getParameter('button_attributes'),
+            'button_url' => $shortcode->getParameter('button_url'),            
         ]);
     }
 }
