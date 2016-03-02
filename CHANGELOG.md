@@ -1,3 +1,11 @@
+# v1.0.1
+## 03/02/2016
+1.[](#improved)  
+    * added button_url property which adds the link attribute to button
+
+2.[](#bugfix)    
+    * added missing assets configuration to FooterTwoShortcode
+
 # v1.0.0
 ## 03/01/2016
 1.[](#improved)    
