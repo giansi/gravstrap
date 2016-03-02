@@ -41,6 +41,19 @@ class FooterTwoShortcode extends GravstrapShortcode
     {
         return 'footer/footer_two.html.twig';
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function assets()
+    {
+        return array(
+            'css' => array(                
+                'plugin://gravstrap/css/gravstrap_footer.css',            
+                'plugin://gravstrap/css/gravstrap_footer_inline_navigation.css',
+            ),
+        );
+    }
 
     /**
      * {@inheritdoc}
