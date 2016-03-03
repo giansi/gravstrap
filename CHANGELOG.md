@@ -1,3 +1,8 @@
+# v1.0.2
+## 03/03/2016
+1.[](#bugfix)  
+    * button with link property now goes to linked url
+
 # v1.0.1
 ## 03/02/2016
 1.[](#improved)  

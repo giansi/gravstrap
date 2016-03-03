@@ -1,2 +1,7 @@
 {% set button_attributes = parse_attributes(button_attributes) %}
-<button type="button" link="{{ button_url }}" class="btn btn-{{ button_type|default('default') }} {{ button_attributes.class }}"{% include 'partials/_attributes.html.twig' with {'attributes': button_attributes, 'ignore': ['class']} %}>{{ button_label }}</button>
+{% if button_url is null %}
+<button type="button" class="btn btn-{{ button_type|default('default') }} {{ button_attributes.class }}"{% include 'partials/_attributes.html.twig' with {'attributes': button_attributes, 'ignore': ['class']} %}>{{ button_label }}</button>
+{% else %}
+    {% set link_attributes = 'class:btn btn-' ~ button_type|default('default') %}
+    {% include 'basic/link.html.twig' with{'url': button_url, 'menu': button_label, 'link_attributes': link_attributes } %}
+{% endif %}
