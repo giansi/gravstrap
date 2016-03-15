@@ -49,6 +49,7 @@ class GravstrapPlugin extends Plugin
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Bootstrap');   
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Footer'); 
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Modules');
+        $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Misc');
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Vendor');
     }
 
