@@ -1,3 +1,9 @@
+# v1.0.3
+## 03/17/2016
+1.[](#improved)  
+    * parsed shortcodes assets and added them by type to Grav
+    * added new Google map shortcode
+
 # v1.0.2
 ## 03/03/2016
 1.[](#bugfix)  
