@@ -126,6 +126,15 @@ class GravstrapPlugin extends Plugin
         }
         
         $assets = (array) $meta['shortcode-assets'];
-        $this->grav["assets"]->add($assets);
+        foreach($assets as $type => $asset) {
+            switch ($type) {
+                case 'css':
+                    $this->grav["assets"]->addCss($asset);
+                    break;
+                case 'js':
+                    $this->grav["assets"]->addJs($asset);
+                    break;
+            }
+        }
     }
 }

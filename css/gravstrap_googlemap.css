@@ -1,12 +1,5 @@
-.googlemap-container {
-  position: relative;
-  width: 60%;
-  padding-bottom: 50%;
-}
-
-.googlemaps {
-  position: absolute;
+.googlemap {
   width: 100%;
-  height: 100%;
-  background-color: #1BB3E9;
+  height: 400px;
+  padding-bottom: 50%;
 }

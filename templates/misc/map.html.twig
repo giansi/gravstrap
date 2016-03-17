@@ -1,34 +1,24 @@
-<div id="{{ id }}" class="googlemap-container">
-    <div class="googlemap"></div>
+<div id="{{ id }}" class="googlemap">
 </div>
+
 <script>
-    function initMap() {
-        var mapDiv = document.getElementById('{{ id }}');
-        var map = new google.maps.Map(mapDiv, {
-          center: {{ center }},
-          zoom: {{ zoom }}
-        });
-      
-    {% for marker in markers %}
-        var marker = new google.maps.Marker({
+    google.maps.event.addDomListener(window, "load", function() {
+        var mapOptions = {
+            'center': {{ center }},
+            'zoom': {{ zoom }}
+        };
+        
+        var markers = [];
+        {% for marker in markers %}
+        var markerOptions = {
           position: {{ marker.location }},
           title: "{{ marker.title }}",
-          map: map,
-          animation: google.maps.Animation.DROP
-        });
+          {% if (marker.info is defined and marker.info is not null) %}info: "{{ marker.info }}"{% endif %}
+        }
+        markers.push(markerOptions);
+        {% endfor %}
         
-        {% if (marker.info is defined and marker.info is not null) %}
-        var infowindow = new google.maps.InfoWindow({
-          content: "{{ marker.info }}"
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-        {% endif %}
-    {% endfor %}
-    }
-    
-    google.maps.event.addDomListener(window, "load", function() {
-        initMap();
+        
+        initMap('{{ id }}', mapOptions, markers);
     });
 </script>

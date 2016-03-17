@@ -62,8 +62,8 @@ class MapShortcode extends GravstrapShortcode
                 'plugin://gravstrap/css/gravstrap_googlemap.css',    
             ),
             'js' => array(
-                'https://maps.googleapis.com/maps/api/js?callback=initMap',
-                //'plugin://gravstrap/js/scroll.js',
+                'https://maps.googleapis.com/maps/api/js',
+                'plugin://gravstrap/js/gravstrap_map.js',    
             ),     
         );
     }
@@ -87,27 +87,43 @@ class MapShortcode extends GravstrapShortcode
      * {@inheritdoc}
      */  
     protected function renderOutput(ShortcodeInterface $shortcode)
-    {//echo $shortcode->getParameter('center');exit;
+    {
         return $this->twig->processTemplate($this->template(), [
             'id' => $shortcode->getParameter('id'),
             'zoom' => $shortcode->getParameter('zoom'),
-            'center' => json_encode(array(
-                'lat' => 41.90278,
-                'lng' => 12.49637,
-            )),
-            'markers' => array(
-                0 => array(
-                'location' => json_encode(array(
-                    'lat' => 41.90278,
-                    'lng' => 12.49637,
-                )),                
-                'title' => 'Pippo',
-                'info' => '<strong>Meet Us</strong>.<br/>We are there!',
-                    ),
-            )
-            ////$shortcode->getParameter('center'),
-            //'name' => $shortcode->getParameter('name'),
-            //'items' => $this->shortcode->getStates($this->shortcode->getId($shortcode)),
+            'center' => $this->convertChoords($shortcode->getParameter('center')),
+            'markers' => $this->markers($shortcode),
         ]);
+    }
+    
+    private function markers(ShortcodeInterface $parentShortcode)
+    {
+        $markers = array();
+        $shortcodes = $this->shortcode->getStates($this->shortcode->getId($parentShortcode));
+        foreach($shortcodes as $shortcode) {            
+            $markers[] = array(                
+                'location' => $this->convertChoords($shortcode->getParameter('location')),              
+                'title' => $shortcode->getParameter('title'),
+                'info' => preg_replace('/[\n,\r]/s', '', $this->arrangeContent($shortcode->getContent())),
+            );
+        }
+        
+        return $markers;
+    }
+
+    private function convertChoords($value)
+    {    
+        return json_encode(array_combine(array('lat', 'lng'), explode(",", $value)), JSON_NUMERIC_CHECK);
+    }
+    
+    private function arrangeContent($content)
+    {
+        $content = trim($content);
+        $content = preg_replace('/(^[\n,\r])/s', '', $content);
+        $content = preg_replace('/($[\n,\r])/s', '', $content);
+        $content = nl2br($content);
+        $content = preg_replace('/([\n,\r])/s', '', $content);
+        
+        return $content;
     }
 }
