@@ -93,7 +93,7 @@ class GravstrapPlugin extends Plugin
     
     private function pageShortcodesToTwigVariable(Page $page)
     {
-        $contentMeta = $page->getcontentMeta();
+        $contentMeta = $page->getContentMeta('shortcode-meta');
         if (null === $contentMeta || ! array_key_exists("shortcode", $contentMeta) || null === $shortcodes = $contentMeta["shortcode"]) {
             return;
         }

@@ -1,3 +1,8 @@
+# v1.1.0
+## 06/12/2016
+1.[](#improved)  
+    * improved to work with new Grav 1.1
+
 # v1.0.3
 ## 03/17/2016
 1.[](#improved)  
