@@ -5,6 +5,8 @@
 <span class="glyphicon glyphicon-{{ icon }} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}></span>
 {% elseif type == 'fontawesome' %}
 <i class="fa fa-{{ icon }} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}></i>
+{% elseif type == 'mdi' %}
+<i class="mdi mdi-{{ icon }} {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}></i>
 {% else %}
 <p>{{ 'icon_type ' ~ type ~ ' is not supported'}}</p>
 {% endif %}

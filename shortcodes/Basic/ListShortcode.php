@@ -48,7 +48,8 @@ class ListShortcode extends GravstrapShortcode
     protected function childrenShortcodes()
     {
         return array(
-            'gravstrap-list-item'
+            'gravstrap-list-item',
+            'g-list-item',
         );
     }
 

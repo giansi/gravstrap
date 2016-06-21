@@ -120,7 +120,7 @@ class GravstrapPlugin extends Plugin
     private function addAssets(Page $page)
     {
         // get the meta and check for assets
-        $meta = $page->getContentMeta();
+        $meta = $page->getContentMeta('shortcode-meta');
         if (!isset($meta['shortcode-assets'])) {
             return;
         }
