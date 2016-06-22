@@ -1,3 +1,8 @@
+# v1.1.2
+## 06/22/2016
+1.[](#bugfix)  
+    * fixed blueprints.yaml homepage and demo information
+
 # v1.1.1
 ## 06/21/2016
 1.[](#improved)  
