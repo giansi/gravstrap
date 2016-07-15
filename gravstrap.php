@@ -93,7 +93,7 @@ class GravstrapPlugin extends Plugin
     
     private function pageShortcodesToTwigVariable(Page $page)
     {
-        $contentMeta = $page->getContentMeta('shortcode-meta');
+        $contentMeta = $page->getContentMeta('shortcodeMeta');
         if (null === $contentMeta || ! array_key_exists("shortcode", $contentMeta) || null === $shortcodes = $contentMeta["shortcode"]) {
             return;
         }
@@ -120,12 +120,12 @@ class GravstrapPlugin extends Plugin
     private function addAssets(Page $page)
     {
         // get the meta and check for assets
-        $meta = $page->getContentMeta('shortcode-meta');
-        if (!isset($meta['shortcode-assets'])) {
+        $meta = $page->getContentMeta('shortcodeMeta');
+        if (!isset($meta['shortcodeAssets'])) {
             return;
         }
         
-        $assets = (array) $meta['shortcode-assets'];
+        $assets = (array) $meta['shortcodeAssets'];
         foreach($assets as $type => $asset) {
             switch ($type) {
                 case 'css':
