@@ -26,7 +26,7 @@ use Thunder\Shortcode\Shortcode\ShortcodeInterface;
  * @author Giansimon Diblas
  */
 class ThumbnailShortcode extends GravstrapShortcode
-{    
+{
     /**
      * {@inheritdoc}
      */
@@ -34,7 +34,7 @@ class ThumbnailShortcode extends GravstrapShortcode
     {
         return 'gravstrap-thumbnail';
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -67,7 +67,7 @@ class ThumbnailShortcode extends GravstrapShortcode
             ),
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */

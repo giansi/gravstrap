@@ -29,81 +29,81 @@ abstract class GravstrapShortcode extends Shortcode
 {
     /**
      * Returns the sortcode tag name
-     * 
+     *
      * @return string
      */
     abstract protected function shortcodeName();
-    
+
     /**
      * Returns the name of the template to use
-     * 
+     *
      * @return string
      */
     abstract protected function template();
-    
+
     /**
      * Renders the shortcode output
-     * 
+     *
      * @param ShortcodeInterface $shortcode
      * @return string
-     */    
+     */
     abstract protected function renderOutput(ShortcodeInterface $shortcode);
-        
+
     /**
      * Initializes the shortcode
      */
     public function init()
     {
         $this->shortcode->getHandlers()->add($this->shortcodeName(), function(ShortcodeInterface $shortcode) {
-            
+
             foreach($this->assets() as $type => $assets) {
                 foreach($assets as $asset) {
                     $this->shortcode->addAssets($type, $asset);
                 }
             }
-            
-            $output = $this->renderOutput($shortcode);            
+
+            $output = $this->renderOutput($shortcode);
             if (null !== $shortcode->getParent()) {
                 $this->registerOutput($shortcode, $output);
             }
-            
+
             if (strtolower($shortcode->getParameter('render')) == "false") {
                 $this->registerSection($shortcode, $output);
-                
+
                 return;
             }
-            
+
             return $output;
         });
-        
+
         foreach($this->childrenShortcodes() as $childShortcode) {
             $this->registerChildShortcode($childShortcode);
         }
-        
+
         foreach($this->aliases() as $aliasShortcode => $alias) {
             if (!is_array($alias)) {
                 $this->shortcode->getHandlers()->addAlias($alias, $this->shortcodeName());
-                
+
                 continue;
             }
-            
+
             foreach($alias as  $aliasName) {
                 $this->shortcode->getHandlers()->addAlias($aliasName, $aliasShortcode);
-            }            
+            }
         }
     }
-    
+
     /**
      * Add aliases to shortcode.
-     * 
+     *
      * Aliases can be defined as follows:
-     * 
+     *
      * array(
             'g-jumbotron',
         );
-     * 
+     *
      * or
-     * 
+     *
      * array(
             'gravstrap-accordion' => array(
                 'g-accordion'
@@ -112,18 +112,18 @@ abstract class GravstrapShortcode extends Shortcode
                 'g-accordion-item'
             ),
         );
-     * 
-     * 
+     *
+     *
      * @return array
      */
     protected function aliases()
     {
         return array();
     }
-    
+
     /**
      * Initializes children shortcodes.
-     * 
+     *
      * @see Grav\Plugin\Shortcodes\CarouselShortcode
      * @return array
      */
@@ -131,21 +131,21 @@ abstract class GravstrapShortcode extends Shortcode
     {
         return array();
     }
-    
+
     /**
      * Add extra assets required by the shortcode.
-     * 
+     *
      * An example could be the following one:
-     * return array(            
+     * return array(
             'css' => array(
-                'plugin://gravstrap/css/gravstrap_progressbar.css',    
+                'plugin://gravstrap/css/gravstrap_progressbar.css',
             ),
             'js' => array(
                 'plugin://gravstrap/js/gravstrap_navbar.js',
                 'plugin://gravstrap/js/scroll.js',
-            ),         
+            ),
         );
-     * 
+     *
      * @return array
      */
     protected function assets()
@@ -155,7 +155,7 @@ abstract class GravstrapShortcode extends Shortcode
 
     /**
      * Looks for a parameter in the given shortcode first, then looks to its parent when it is not found
-     * 
+     *
      * @param ShortcodeInterface $shortcode
      * @param string $parameterName
      * @param ShortcodeInterface $parent
@@ -174,7 +174,7 @@ abstract class GravstrapShortcode extends Shortcode
 
         return $value;
     }
-    
+
     /**
      * Parses Gravstrap shortcode sections
      */
@@ -189,26 +189,26 @@ abstract class GravstrapShortcode extends Shortcode
             $name = key($value);
             $items[$name] = $value[$name];
         }
-        
+
         return $items;
     }
-    
+
     /**
      * Registers the given output for the handled shortcode parent
-     * 
+     *
      * @param mixed $output
      */
     protected function registerOutput($shortcode, $output)
     {
         $parentShortcode = $shortcode->getParent();
         $parentHash = $this->shortcode->getId($parentShortcode);
-        
+
         RegisteredShortcodes::register($parentHash, $output);
-    }    
-    
+    }
+
     /**
      * Register a shortcode section
-     * 
+     *
      * @param ShortcodeInterface $shortcode
      * @param strign|null $content
      */
@@ -217,7 +217,7 @@ abstract class GravstrapShortcode extends Shortcode
         if (null === $content) {
             $content = $shortcode->getContent();
         }
-        
+
         $name = $shortcode->getParameter('name');
         $object = new ShortcodeObject($name, $content);
         $this->shortcode->addObject($shortcode->getName(), $object);
@@ -225,7 +225,7 @@ abstract class GravstrapShortcode extends Shortcode
 
     /**
      * Registers a child shortcode
-     * 
+     *
      * @param string $shortcodeName
      */
     protected function registerChildShortcode($shortcodeName)
@@ -234,17 +234,17 @@ abstract class GravstrapShortcode extends Shortcode
             if (null === $shortcode->getParent()) {
                 return;
             }
-            
+
             $hash = $this->shortcode->getId($shortcode->getParent());
             $this->shortcode->setStates($hash, $shortcode);
-            
+
             return;
         });
     }
 
     /**
      * Returns the given default value when given value is null
-     * 
+     *
      * @param mixed $value
      * @param mixed $default
      * @return mixed
@@ -253,10 +253,10 @@ abstract class GravstrapShortcode extends Shortcode
     {
         return (null !== $value) ? $value : $default;
     }
-    
+
     /**
      * Fixes the shortcode content
-     * 
+     *
      * @param ShortcodeInterface $shortcode
      * @return type
      */
@@ -269,7 +269,7 @@ abstract class GravstrapShortcode extends Shortcode
 
     /**
      * Converts a string to boolean
-     * 
+     *
      * @param string $value
      * @return boolean
      */

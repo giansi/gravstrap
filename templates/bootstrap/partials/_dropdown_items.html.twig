@@ -1,5 +1,5 @@
 {% set attributes = parse_attributes(attributes) %}
-<ul class="dropdown-menu"{% include 'partials/_attributes.html.twig' %}>
+<ul class="dropdown-menu {{ attributes['class'] }}"{% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %}>
   {% for item in items %}
     {% if item is iterable %}
     <li>{% include 'basic/link.html.twig' with {'menu': item.menu, 'url': item.url} %}</li>

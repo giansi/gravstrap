@@ -33,6 +33,7 @@ class GravstrapPlugin extends Plugin
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
             'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
+            'onPageInitialized' => ['onPageInitialized', 0],
         ];
     }
 
@@ -40,7 +41,7 @@ class GravstrapPlugin extends Plugin
      * Initializes the shortcodes
      */
     public function onShortcodeHandlers()
-    {
+    {        
         require_once(__DIR__.'/classes/Base/GravstrapShortcode.php');
         require_once(__DIR__.'/classes/Base/RegisteredShortcodes.php');
         require_once(__DIR__.'/classes/Twig/GravstrapTwigExtension.php');
@@ -51,6 +52,17 @@ class GravstrapPlugin extends Plugin
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Modules');
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Misc');
         $this->grav["shortcode"]->registerAllShortcodes(__DIR__.'/shortcodes/Vendor');
+    }
+    
+    /**
+     * Processes the page when it has children. This allows to use shortcodes in a page who has children.
+     */
+    public function onPageInitialized()
+    {
+        $page = $this->grav['page'];
+        if (isset($page->header()->content['items'])) {
+            $page->content();            
+        }
     }
 
     /**
@@ -76,7 +88,7 @@ class GravstrapPlugin extends Plugin
      * Assigns not rendered shortcodes to twig variables; adds modular pages assets; parses common page
      */
     public function onTwigSiteVariables()
-    {      
+    {
         $page = $this->grav['page'];
         $this->pageShortcodesToTwigVariable($page);
         $this->manageModularPage($page);

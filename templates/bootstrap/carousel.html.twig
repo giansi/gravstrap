@@ -12,10 +12,10 @@
             {% set values = {
               'image': item.getParameter('image'),
               'caption': item.content|trim,
-            } %} 
+            } %}
         {% endif %}
         <div class="item{% if loop.first %} active{% endif %}">
-            {{ grav.page.media.images[values.image] }}
+            {{ grav.page.find('/images').media.images[values.image] }} 
             <div class="carousel-caption">{{ values.caption }}</div>
         </div>
         {% endfor %}

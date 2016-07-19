@@ -1,5 +1,5 @@
 {% set attributes = parse_attributes(attributes) %}
-<div class="jumbotron {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %} {% if(image is defined and image != null) %} style="background-image: url('{{ grav.page.media.images[image].url }}')"{% endif %}>
+<div class="jumbotron {{ attributes['class'] }}" {% include 'partials/_attributes.html.twig' with {'ignore': ['class']} %} {% if(image is defined and image != null) %} style="background-image: url('{{ grav.page.find('/images').media.images[image].url }} ')"{% endif %}>
     {% if fullwidth == true %}
     <div class="container">
     {{ content }}

@@ -26,7 +26,7 @@ use Thunder\Shortcode\Shortcode\ShortcodeInterface;
  * @author Giansimon Diblas
  */
 class ClientsShortcode extends GravstrapShortcode
-{    
+{
     /**
      * {@inheritdoc}
      */
@@ -34,7 +34,7 @@ class ClientsShortcode extends GravstrapShortcode
     {
         return 'gravstrap-clients';
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -44,15 +44,15 @@ class ClientsShortcode extends GravstrapShortcode
             'gravstrap-clients-item'
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function assets()
     {
         return array(
-            'css' => array(                  
-                'plugin://gravstrap/css/gravstrap_clients.css',  
+            'css' => array(
+                'plugin://gravstrap/css/gravstrap_clients.css',
             ),
         );
     }
@@ -79,7 +79,7 @@ class ClientsShortcode extends GravstrapShortcode
             ),
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -87,10 +87,10 @@ class ClientsShortcode extends GravstrapShortcode
     {
         return $this->twig->processTemplate($this->template(), [
             'name' => $shortcode->getParameter('name'),
-            'content' => $this->fixContent($shortcode),   
-            'items' => $this->shortcode->getStates($this->shortcode->getId($shortcode)),   
-            'attributes' => $shortcode->getParameter('attributes'), 
-            'column_attributes' => $shortcode->getParameter('column_attributes'), 
+            'content' => $this->fixContent($shortcode),
+            'items' => $this->shortcode->getStates($this->shortcode->getId($shortcode)),
+            'attributes' => $shortcode->getParameter('attributes'),
+            'column_attributes' => $shortcode->getParameter('column_attributes'),
         ]);
     }
 }

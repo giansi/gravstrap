@@ -7,10 +7,10 @@
             'heading_id': item.getParameter('heading_id'),
             'title': item.getParameter('title')|trim,
             'content': item.content|trim,
-          } %} 
+          } %}
       {% endif %}
       <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="{{ values.heading_id }}">
+        <div class="panel-heading" role="tab"{% if (values.heading_id is not null) %} id="{{ values.heading_id }}"{% endif %}>
           <h4 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#{{ id }}" href="#{{ values.id }}" aria-expanded="true" aria-controls="{{ values.id }}">
               {{ values.title }}

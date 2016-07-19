@@ -63,7 +63,7 @@ class GravstrapSectionShortcode extends GravstrapShortcode
             'content' => $this->fixContent($shortcode),
             'attributes' => $shortcode->getParameter('attributes')
         ]);
-        
+
         $this->registerOutput($shortcode, array($name => $output));
     }
 }

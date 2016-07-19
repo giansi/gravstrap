@@ -58,9 +58,9 @@ class SimpleFormShortcode extends GravstrapShortcode
     protected function renderOutput(ShortcodeInterface $shortcode)
     {
         return $this->grav['twig']->processTemplate($this->template(), [
-            'token' => $shortcode->getParameter('token'),  
-            'redirect_to' => $this->stringToBoolean($shortcode->getParameter('redirect_to')),
-            'show_form_labels' => $shortcode->getParameter('show_form_labels'),
+            'token' => $shortcode->getParameter('token'),
+            'redirect_to' => $shortcode->getParameter('redirect_to'),
+            'show_form_labels' => filter_var($shortcode->getParameter('show_form_labels'), FILTER_VALIDATE_BOOLEAN),
         ]);
     }
 }

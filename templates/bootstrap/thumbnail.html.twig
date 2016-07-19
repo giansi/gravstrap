@@ -7,15 +7,15 @@
               'content': item.content|trim,
               'class': item.getParameter('class'),
               'url': item.getParameter('url'),
-            } %} 
+            } %}
         {% endif %}
-        
+
         <div class="{{ values.class|default('col-md-4') }}">
             {% set linked = values.url is not null %}
             {% set tag = linked ? 'a href="' ~ values.url ~ '"' : 'div' %}
             {% set close_tag = linked ? 'a' : 'div' %}
             <{{ tag }} class="thumbnail">
-            {{ grav.page.media.images[values.image] }}
+            {{ grav.page.find('/images').media.images[values.image] }} 
             {% if linked == false %}
             <div class="caption">
                 {{ values.content }}
