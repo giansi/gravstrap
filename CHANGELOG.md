@@ -1,3 +1,8 @@
+# v1.1.3
+## 07/15/2016
+1.[](#improved)  
+    * updated to work with shortcode-core 2.3.1 plugin (bashou)
+
 # v1.1.2
 ## 06/22/2016
 1.[](#bugfix)  
