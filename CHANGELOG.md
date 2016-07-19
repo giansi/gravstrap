@@ -1,3 +1,9 @@
+#v1.2.0
+## 07/19/2016
+1.[](#bugfix)  
+    shortcodes require a static centralized folder for media files [BC]
+    shortcodes now work in pages with children
+
 # v1.1.3
 ## 07/15/2016
 1.[](#improved)  
@@ -12,7 +18,7 @@
 ## 06/21/2016
 1.[](#improved)  
     * added mdi icons support
-    
+
 1.[](#bugfix)  
     * fixed assets are not added for common plugins
     * fixed gravstrap-list-item  shortcode does not show the items

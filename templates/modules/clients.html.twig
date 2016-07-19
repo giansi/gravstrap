@@ -10,7 +10,12 @@
                 } %}
             {% endif %}
             <div class="item-image {{ values.attributes.class }}" {% include 'partials/_attributes.html.twig' with {'attributes': values.attributes, 'ignore': ['class']} %}>
-                {{ grav.page.find('/images').media.images[values.image] }} 
+                {% set images_page = grav.page.find('/images') %}
+                {% if (values.image|split('.')[1] == 'svg') %}
+                {{ images_page.media.files[values.image] }}
+                {% else %}
+                {{ images_page.media.images[values.image].html('', '', 'img-responsive') }}
+                {% endif %}
             </div>
         {% endfor %}
         </div>
