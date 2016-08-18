@@ -2,12 +2,12 @@
 </div>
 
 <script>
-    google.maps.event.addDomListener(window, "load", function() {
+    function initMap() {
         var mapOptions = {
             'center': {{ center }},
             'zoom': {{ zoom }}
         };
-        
+
         var markers = [];
         {% for marker in markers %}
         var markerOptions = {
@@ -17,8 +17,27 @@
         }
         markers.push(markerOptions);
         {% endfor %}
-        
-        
-        initMap('{{ id }}', mapOptions, markers);
-    });
+
+        var mapDiv = document.getElementById('{{ id }}');
+        var map = new google.maps.Map(mapDiv, mapOptions);
+
+        for (var i = 0; i < markers.length; i++) {
+            var markerOptions = markers[i];
+            markerOptions.map = map;
+            markerOptions.animation = google.maps.Animation.DROP;
+            var marker = new google.maps.Marker(markerOptions);
+
+            if (markerOptions.hasOwnProperty('info')) {
+                var infowindow = new google.maps.InfoWindow({
+                    content: markerOptions.info
+                });
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
+        }
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
 </script>

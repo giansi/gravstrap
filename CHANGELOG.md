@@ -1,3 +1,8 @@
+#v1.2.1
+## 08/18/2016
+1.[](#improved)  
+    updated MapShortcode to use Google Maps api key, just adding the optional `api-key` parameter to `g-map` shortcode
+
 #v1.2.0
 ## 07/19/2016
 1.[](#bugfix)  
