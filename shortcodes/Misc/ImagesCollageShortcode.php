@@ -27,6 +27,8 @@ use Gregwar\Image\Image;
 /**
  * Class ImagesCollageShortcode render a collage of images from a Grav page
  *
+ * This shortcode is based on grav-plugin-image-collage (https://github.com/petrgrishin/grav-plugin-image-collage)
+ *
  * @author Giansimon Diblas
  */
 class ImagesCollageShortcode extends GravstrapShortcode
@@ -77,20 +79,28 @@ class ImagesCollageShortcode extends GravstrapShortcode
         is_null($borderSize) && $borderSize = 2;
         $width = $shortcode->getParameter('width');
         is_null($width) && $width = 400;
+        $attributes = $shortcode->getParameter('attributes');
+        $parsedAttributes = array();
+        $attributes = explode(',', $attributes);
+        foreach($attributes as $attribute) {
+            $value = explode(':', $attribute);
+            $parsedAttributes[$value[0]] = $value[1];
+        }
 
-        return $this->imageCollage($images, $columns, $borderSize, $width);
+        return $this->imageCollage($images, $columns, $borderSize, $width, $parsedAttributes);
     }
 
     /**
-     * Credits to petrgrishin (https://github.com/petrgrishin) for this method from his grav-plugin-image-collage (https://github.com/petrgrishin/grav-plugin-image-collage)
+     * Credits to petrgrishin (https://github.com/petrgrishin) for this method taken from from his grav-plugin-image-collage (https://github.com/petrgrishin/grav-plugin-image-collage)
      *
      * @param ImageMedium[] $images
      * @param int $column
      * @param int $borderSize
      * @param int $width
+     * @param array $attributes
      * @return ImageMedium
      */
-    private function imageCollage(array $images , $column, $borderSize, $width)
+    private function imageCollage(array $images , $column, $borderSize, $width, array $attributes = array())
     {
         $widthImg = $width - $borderSize;
         $cachePath = $this->grav['locator']->findResource('cache://images', true);
@@ -112,7 +122,7 @@ class ImagesCollageShortcode extends GravstrapShortcode
             }
         }
         $filePath = $collage->cacheFile('jpg', 85);
-        $imageMedium = MediumFactory::fromFile($filePath);
+        $imageMedium = MediumFactory::fromFile($filePath, $attributes);
 
         return $imageMedium;
     }
