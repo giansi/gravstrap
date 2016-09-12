@@ -94,6 +94,24 @@ abstract class GravstrapShortcode extends Shortcode
     }
 
     /**
+     * Parses Gravstrap shortcode sections
+     */
+    public function sections(ShortcodeInterface $shortcode)
+    {
+        $items = array();
+        $registeredItems = RegisteredShortcodes::get($this->shortcode->getId($shortcode));
+        foreach ($registeredItems as $value) {
+            if (!is_array($value)) {
+                continue;
+            }
+            $name = key($value);
+            $items[$name] = $value[$name];
+        }
+
+        return $items;
+    }
+
+    /**
      * Add aliases to shortcode.
      *
      * Aliases can be defined as follows:
@@ -173,24 +191,6 @@ abstract class GravstrapShortcode extends Shortcode
         }
 
         return $value;
-    }
-
-    /**
-     * Parses Gravstrap shortcode sections
-     */
-    protected function sections(ShortcodeInterface $shortcode)
-    {
-        $items = array();
-        $registeredItems = RegisteredShortcodes::get($this->shortcode->getId($shortcode));
-        foreach ($registeredItems as $value) {
-            if (!is_array($value)) {
-                continue;
-            }
-            $name = key($value);
-            $items[$name] = $value[$name];
-        }
-
-        return $items;
     }
 
     /**
