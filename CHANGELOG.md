@@ -1,3 +1,8 @@
+#v1.2.3
+## 03/09/2017
+1.[](#improved)  
+    renamed shortcode classes to avoid conflicts with other shortcodes
+
 #v1.2.2
 ## 08/21/2016
 1.[](#improved)  
